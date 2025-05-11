@@ -15,104 +15,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-        }
-        .accessible-focus:focus {
-            outline: 3px solid #00f;
-            outline-offset: 2px;
-        }
-        .carousel {
-            position: relative;
-            width: 100%;
-            overflow: hidden;
-        }
-        .carousel img {
-            width: 100%;
-            height: 500px;
-            object-fit: cover;
-            display: none;
-        }
-        .carousel img.active {
-            display: block;
-        }
-        .carousel-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(0, 0, 0, 0.5);
-            color: white;
-            padding: 10px;
-            cursor: pointer;
-            z-index: 10;
-        }
-        .carousel-btn.prev {
-            left: 10px;
-        }
-        .carousel-btn.next {
-            right: 10px;
-        }
-        .room-carousel img, .amenity-carousel img {
-            height: 200px;
-            object-fit: cover;
-        }
-        .booking-form {
-            display: none;
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            margin-top: 20px;
-        }
-        .booking-form.active {
-            display: block;
-        }
-        nav {
-            position: sticky;
-            top: 0;
-            z-index: 50;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        html {
-            scroll-behavior: smooth;
-        }
-        #nav-toggle {
-            display: none;
-        }
-        #nav-toggle:checked ~ #nav-menu {
-            display: block;
-        }
-        .hamburger-icon {
-            cursor: pointer;
-            display: none;
-        }
-        @media (max-width: 768px) {
-            .hamburger-icon {
-                display: block;
-            }
-            #nav-menu {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background: #15803d;
-                padding: 1rem;
-                box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            }
-            #nav-menu ul {
-                flex-direction: column;
-                space-y-2;
-            }
-            #nav-menu li {
-                margin: 0.5rem 0;
-            }
-            .language-switcher {
-                margin-top: 1rem;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body class="bg-gray-100">
     <nav class="bg-green-700 text-white p-4">
@@ -157,154 +60,154 @@
             <p class="text-lg">Experience luxury and comfort at our holiness camp ground in Kwali, Abuja. Comfort is our culture, creativity is our passion, and perfection is our drive.</p>
         </div>
     </section>
-<section id="rooms" class="py-16">
-    <div class="container mx-auto">
-        <h2 class="text-3xl font-bold text-center mb-8">Our Rooms</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div class="bg-white p-6 rounded-lg shadow-lg relative" id="royal-room">
-                <div class="carousel room-carousel" data-carousel-id="royal">
-                    <div class="carousel-inner h-64 overflow-hidden relative">
-                        <img src="https://codesnippet-741238344.imgix.net/eloheem/eloheem-suite-bedroom-side.jpg" alt="Royal Room Bed" class="absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-500">
-                        <img src="https://codesnippet-741238344.imgix.net/eloheem/eloheem6.jpg" alt="Royal Room Bathroom" class="absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-500 hidden">
-                        <img src="https://codesnippet-741238344.imgix.net/eloheem/eloheem5.jpg" alt="Royal Room View" class="absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-500 hidden">
+    <section id="rooms" class="py-16">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-8">Our Rooms</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-white p-6 rounded-lg shadow-lg relative" id="royal-room">
+                    <div class="carousel room-carousel" data-carousel-id="royal">
+                        <div class="carousel-inner h-64 overflow-hidden relative">
+                            <img src="https://codesnippet-741238344.imgix.net/eloheem/eloheem-suite-bedroom-side.jpg" alt="Royal Room Bed" class="absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-500">
+                            <img src="https://codesnippet-741238344.imgix.net/eloheem/eloheem6.jpg" alt="Royal Room Bathroom" class="absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-500 hidden">
+                            <img src="https://codesnippet-741238344.imgix.net/eloheem/eloheem5.jpg" alt="Royal Room View" class="absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-500 hidden">
+                        </div>
+                        <button class="carousel-btn prev accessible-focus bg-black bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-75 absolute top-1/2 left-2 transform -translate-y-1/2 z-10" onclick="changeSlide('royal', -1)">❮</button>
+                        <button class="carousel-btn next accessible-focus bg-black bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-75 absolute top-1/2 right-2 transform -translate-y-1/2 z-10" onclick="changeSlide('royal', 1)">❯</button>
                     </div>
-                    <button class="carousel-btn prev accessible-focus bg-black bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-75 absolute top-1/2 left-2 transform -translate-y-1/2 z-10" onclick="changeSlide('royal', -1)">❮</button>
-                    <button class="carousel-btn next accessible-focus bg-black bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-75 absolute top-1/2 right-2 transform -translate-y-1/2 z-10" onclick="changeSlide('royal', 1)">❯</button>
-                </div>
-                <h3 class="text-xl font-semibold mt-4">Royal Room</h3>
-                <p class="mt-2">Enjoy a cozy stay with modern amenities. Rate: ₦17,500 (Total with VAT).</p>
-                <button class="mt-4 bg-green-700 text-white p-2 rounded hover:bg-green-800 accessible-focus" onclick="showBookingForm('royal-room', 'ROYAL', 17500)">Book Now</button>
-                <div class="booking-form" id="booking-form-royal-room" role="region" aria-live="polite">
-                    <form class="payment-form">
-                        <h3 class="text-xl font-semibold mb-4">Book Your Royal Room</h3>
-                        <div class="mb-4">
-                            <label for="checkIn-royal-room" class="block text-sm font-medium text-gray-700">Check-in Date</label>
-                            <input type="date" id="checkIn-royal-room" name="checkIn" class="mt-1 block w-full p-2 border rounded" required>
-                        </div>
-                        <div class="mb-4">
-                            <label for="checkOut-royal-room" class="block text-sm font-medium text-gray-700">Check-out Date</label>
-                            <input type="date" id="checkOut-royal-room" name="checkOut" class="mt-1 block w-full p-2 border rounded" required>
-                        </div>
-                        <div class="mb-4">
-                            <label for="fullName-royal-room" class="block text-sm font-medium text-gray-700">Full Name</label>
-                            <input type="text" id="fullName-royal-room" name="fullName" class="mt-1 block w-full p-2 border rounded" required>
-                        </div>
-                        <div class="mb-4">
-                            <label for="email-royal-room" class="block text-sm font-medium text-gray-700">Email</label>
-                            <input type="email" id="email-royal-room" name="email" class="mt-1 block w-full p-2 border rounded" required>
-                        </div>
-                        <div class="mb-4">
-                            <label class="block text-sm font-medium text-gray-700">Total Price</label>
-                            <p id="totalPrice-royal-room" class="text-lg font-semibold">₦0</p>
-                        </div>
-                        <input type="hidden" name="roomType" value="ROYAL">
-                        <input type="hidden" name="amount" id="amount-royal-room">
-                        <input type="hidden" name="currency" value="NGN">
-                        <input type="hidden" name="reference" value="txref_royal_room_123456789">
-                        <input type="hidden" name="callback_url" value="https://eloheemsuites.com/success">
-                        <input type="hidden" name="metadata" value='{"custom_fields":[{"display_name":"Room Type","variable_name":"room_type","value":"ROYAL"}]}'>
-                        <button type="submit" class="w-full bg-green-700 text-white p-2 rounded hover:bg-green-800 accessible-focus">Confirm Booking</button>
-                        <button type="button" class="mt-2 w-full bg-gray-500 text-white p-2 rounded hover:bg-gray-600 accessible-focus" onclick="hideBookingForm('royal-room')">Cancel</button>
-                    </form>
-                </div>
-            </div>
-            <div class="bg-white p-6 rounded-lg shadow-lg relative" id="queens-kings-room">
-                <div class="carousel room-carousel" data-carousel-id="queens-kings">
-                    <div class="carousel-inner h-64 overflow-hidden relative">
-                        <img src="https://codesnippet-741238344.imgix.net/eloheem/eloheem5.jpg" alt="Queens & Kings Bed" class="absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-500">
-                        <img src="https://codesnippet-741238344.imgix.net/eloheem/eloheem2.jpg" alt="Queens & Kings Living Area" class="absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-500 hidden">
-                        <img src="https://codesnippet-741238344.imgix.net/eloheem/eloheem3.jpg" alt="Queens & Kings Balcony" class="absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-500 hidden">
+                    <h3 class="text-xl font-semibold mt-4">Royal Room</h3>
+                    <p class="mt-2">Enjoy a cozy stay with modern amenities. Rate: ₦17,500 (Total with VAT).</p>
+                    <button class="mt-4 bg-green-700 text-white p-2 rounded hover:bg-green-800 accessible-focus" onclick="showBookingForm('royal-room', 'ROYAL', 17500)">Book Now</button>
+                    <div class="booking-form" id="booking-form-royal-room" role="region" aria-live="polite">
+                        <form class="payment-form">
+                            <h3 class="text-xl font-semibold mb-4">Book Your Royal Room</h3>
+                            <div class="mb-4">
+                                <label for="checkIn-royal-room" class="block text-sm font-medium text-gray-700">Check-in Date</label>
+                                <input type="date" id="checkIn-royal-room" name="checkIn" class="mt-1 block w-full p-2 border rounded" required>
+                            </div>
+                            <div class="mb-4">
+                                <label for="checkOut-royal-room" class="block text-sm font-medium text-gray-700">Check-out Date</label>
+                                <input type="date" id="checkOut-royal-room" name="checkOut" class="mt-1 block w-full p-2 border rounded" required>
+                            </div>
+                            <div class="mb-4">
+                                <label for="fullName-royal-room" class="block text-sm font-medium text-gray-700">Full Name</label>
+                                <input type="text" id="fullName-royal-room" name="fullName" class="mt-1 block w-full p-2 border rounded" required>
+                            </div>
+                            <div class="mb-4">
+                                <label for="email-royal-room" class="block text-sm font-medium text-gray-700">Email</label>
+                                <input type="email" id="email-royal-room" name="email" class="mt-1 block w-full p-2 border rounded" required>
+                            </div>
+                            <div class="mb-4">
+                                <label class="block text-sm font-medium text-gray-700">Total Price</label>
+                                <p id="totalPrice-royal-room" class="text-lg font-semibold">₦0</p>
+                            </div>
+                            <input type="hidden" name="roomType" value="ROYAL">
+                            <input type="hidden" name="amount" id="amount-royal-room">
+                            <input type="hidden" name="currency" value="NGN">
+                            <input type="hidden" name="reference" value="txref_royal_room_123456789">
+                            <input type="hidden" name="callback_url" value="https://eloheemsuites.com/success">
+                            <input type="hidden" name="metadata" value='{"custom_fields":[{"display_name":"Room Type","variable_name":"room_type","value":"ROYAL"}]}'>
+                            <button type="submit" class="w-full bg-green-700 text-white p-2 rounded hover:bg-green-800 accessible-focus">Confirm Booking</button>
+                            <button type="button" class="mt-2 w-full bg-gray-500 text-white p-2 rounded hover:bg-gray-600 accessible-focus" onclick="hideBookingForm('royal-room')">Cancel</button>
+                        </form>
                     </div>
-                    <button class="carousel-btn prev accessible-focus bg-black bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-75 absolute top-1/2 left-2 transform -translate-y-1/2 z-10" onclick="changeSlide('queens-kings', -1)">❮</button>
-                    <button class="carousel-btn next accessible-focus bg-black bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-75 absolute top-1/2 right-2 transform -translate-y-1/2 z-10" onclick="changeSlide('queens-kings', 1)">❯</button>
                 </div>
-                <h3 class="text-xl font-semibold mt-4">Queens & Kings Room</h3>
-                <p class="mt-2">Spacious and elegant, perfect for couples. Rate: ₦21,500 (Total with VAT).</p>
-                <button class="mt-4 bg-green-700 text-white p-2 rounded hover:bg-green-800 accessible-focus" onclick="showBookingForm('queens-kings-room', 'QUEENS_KINGS', 21500)">Book Now</button>
-                <div class="booking-form" id="booking-form-queens-kings-room" role="region" aria-live="polite">
-                    <form class="payment-form">
-                        <h3 class="text-xl font-semibold mb-4">Book Your Queens & Kings Room</h3>
-                        <div class="mb-4">
-                            <label for="checkIn-queens-kings-room" class="block text-sm font-medium text-gray-700">Check-in Date</label>
-                            <input type="date" id="checkIn-queens-kings-room" name="checkIn" class="mt-1 block w-full p-2 border rounded" required>
+                <div class="bg-white p-6 rounded-lg shadow-lg relative" id="queens-kings-room">
+                    <div class="carousel room-carousel" data-carousel-id="queens-kings">
+                        <div class="carousel-inner h-64 overflow-hidden relative">
+                            <img src="https://codesnippet-741238344.imgix.net/eloheem/eloheem5.jpg" alt="Queens & Kings Bed" class="absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-500">
+                            <img src="https://codesnippet-741238344.imgix.net/eloheem/eloheem2.jpg" alt="Queens & Kings Living Area" class="absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-500 hidden">
+                            <img src="https://codesnippet-741238344.imgix.net/eloheem/eloheem3.jpg" alt="Queens & Kings Balcony" class="absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-500 hidden">
                         </div>
-                        <div class="mb-4">
-                            <label for="checkOut-queens-kings-room" class="block text-sm font-medium text-gray-700">Check-out Date</label>
-                            <input type="date" id="checkOut-queens-kings-room" name="checkOut" class="mt-1 block w-full p-2 border rounded" required>
-                        </div>
-                        <div class="mb-4">
-                            <label for="fullName-queens-kings-room" class="block text-sm font-medium text-gray-700">Full Name</label>
-                            <input type="text" id="fullName-queens-kings-room" name="fullName" class="mt-1 block w-full p-2 border rounded" required>
-                        </div>
-                        <div class="mb-4">
-                            <label for="email-queens-kings-room" class="block text-sm font-medium text-gray-700">Email</label>
-                            <input type="email" id="email-queens-kings-room" name="email" class="mt-1 block w-full p-2 border rounded" required>
-                        </div>
-                        <div class="mb-4">
-                            <label class="block text-sm font-medium text-gray-700">Total Price</label>
-                            <p id="totalPrice-queens-kings-room" class="text-lg font-semibold">₦0</p>
-                        </div>
-                        <input type="hidden" name="roomType" value="QUEENS_KINGS">
-                        <input type="hidden" name="amount" id="amount-queens-kings-room">
-                        <input type="hidden" name="currency" value="NGN">
-                        <input type="hidden" name="reference" value="txref_queens_kings_room_123456789">
-                        <input type="hidden" name="callback_url" value="https://eloheemsuites.com/success">
-                        <input type="hidden" name="metadata" value='{"custom_fields":[{"display_name":"Room Type","variable_name":"room_type","value":"QUEENS_KINGS"}]}'>
-                        <button type="submit" class="w-full bg-green-700 text-white p-2 rounded hover:bg-green-800 accessible-focus">Confirm Booking</button>
-                        <button type="button" class="mt-2 w-full bg-gray-500 text-white p-2 rounded hover:bg-gray-600 accessible-focus" onclick="hideBookingForm('queens-kings-room')">Cancel</button>
-                    </form>
-                </div>
-            </div>
-            <div class="bg-white p-6 rounded-lg shadow-lg relative" id="executive-luxury-room">
-                <div class="carousel room-carousel" data-carousel-id="executive-luxury">
-                    <div class="carousel-inner h-64 overflow-hidden relative">
-                        <img src="https://codesnippet-741238344.imgix.net/eloheem/eloheem1.jpg" alt="Executive Luxury Suite Bed" class="absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-500">
-                        <img src="https://codesnippet-741238344.imgix.net/eloheem/eloheem6.jpg" alt="Executive Luxury Suite Lounge" class="absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-500 hidden">
-                        <img src="https://codesnippet-741238344.imgix.net/eloheem/eloheem4.jpg" alt="Executive Luxury Suite Bathroom" class="absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-500 hidden">
+                        <button class="carousel-btn prev accessible-focus bg-black bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-75 absolute top-1/2 left-2 transform -translate-y-1/2 z-10" onclick="changeSlide('queens-kings', -1)">❮</button>
+                        <button class="carousel-btn next accessible-focus bg-black bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-75 absolute top-1/2 right-2 transform -translate-y-1/2 z-10" onclick="changeSlide('queens-kings', 1)">❯</button>
                     </div>
-                    <button class="carousel-btn prev accessible-focus bg-black bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-75 absolute top-1/2 left-2 transform -translate-y-1/2 z-10" onclick="changeSlide('executive-luxury', -1)">❮</button>
-                    <button class="carousel-btn next accessible-focus bg-black bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-75 absolute top-1/2 right-2 transform -translate-y-1/2 z-10" onclick="changeSlide('executive-luxury', 1)">❯</button>
+                    <h3 class="text-xl font-semibold mt-4">Queens & Kings Room</h3>
+                    <p class="mt-2">Spacious and elegant, perfect for couples. Rate: ₦21,500 (Total with VAT).</p>
+                    <button class="mt-4 bg-green-700 text-white p-2 rounded hover:bg-green-800 accessible-focus" onclick="showBookingForm('queens-kings-room', 'QUEENS_KINGS', 21500)">Book Now</button>
+                    <div class="booking-form" id="booking-form-queens-kings-room" role="region" aria-live="polite">
+                        <form class="payment-form">
+                            <h3 class="text-xl font-semibold mb-4">Book Your Queens & Kings Room</h3>
+                            <div class="mb-4">
+                                <label for="checkIn-queens-kings-room" class="block text-sm font-medium text-gray-700">Check-in Date</label>
+                                <input type="date" id="checkIn-queens-kings-room" name="checkIn" class="mt-1 block w-full p-2 border rounded" required>
+                            </div>
+                            <div class="mb-4">
+                                <label for="checkOut-queens-kings-room" class="block text-sm font-medium text-gray-700">Check-out Date</label>
+                                <input type="date" id="checkOut-queens-kings-room" name="checkOut" class="mt-1 block w-full p-2 border rounded" required>
+                            </div>
+                            <div class="mb-4">
+                                <label for="fullName-queens-kings-room" class="block text-sm font-medium text-gray-700">Full Name</label>
+                                <input type="text" id="fullName-queens-kings-room" name="fullName" class="mt-1 block w-full p-2 border rounded" required>
+                            </div>
+                            <div class="mb-4">
+                                <label for="email-queens-kings-room" class="block text-sm font-medium text-gray-700">Email</label>
+                                <input type="email" id="email-queens-kings-room" name="email" class="mt-1 block w-full p-2 border rounded" required>
+                            </div>
+                            <div class="mb-4">
+                                <label class="block text-sm font-medium text-gray-700">Total Price</label>
+                                <p id="totalPrice-queens-kings-room" class="text-lg font-semibold">₦0</p>
+                            </div>
+                            <input type="hidden" name="roomType" value="QUEENS_KINGS">
+                            <input type="hidden" name="amount" id="amount-queens-kings-room">
+                            <input type="hidden" name="currency" value="NGN">
+                            <input type="hidden" name="reference" value="txref_queens_kings_room_123456789">
+                            <input type="hidden" name="callback_url" value="https://eloheemsuites.com/success">
+                            <input type="hidden" name="metadata" value='{"custom_fields":[{"display_name":"Room Type","variable_name":"room_type","value":"QUEENS_KINGS"}]}'>
+                            <button type="submit" class="w-full bg-green-700 text-white p-2 rounded hover:bg-green-800 accessible-focus">Confirm Booking</button>
+                            <button type="button" class="mt-2 w-full bg-gray-500 text-white p-2 rounded hover:bg-gray-600 accessible-focus" onclick="hideBookingForm('queens-kings-room')">Cancel</button>
+                        </form>
+                    </div>
                 </div>
-                <h3 class="text-xl font-semibold mt-4">Executive Luxury Suite</h3>
-                <p class="mt-2">Ultimate luxury with premium features. Rate: ₦35,000 (Total with VAT).</p>
-                <button class="mt-4 bg-green-700 text-white p-2 rounded hover:bg-green-800 accessible-focus" onclick="showBookingForm('executive-luxury-room', 'EXECUTIVE_LUXURY', 35000)">Book Now</button>
-                <div class="booking-form" id="booking-form-executive-luxury-room" role="region" aria-live="polite">
-                    <form class="payment-form">
-                        <h3 class="text-xl font-semibold mb-4">Book Your Executive Luxury Suite</h3>
-                        <div class="mb-4">
-                            <label for="checkIn-executive-luxury-room" class="block text-sm font-medium text-gray-700">Check-in Date</label>
-                            <input type="date" id="checkIn-executive-luxury-room" name="checkIn" class="mt-1 block w-full p-2 border rounded" required>
+                <div class="bg-white p-6 rounded-lg shadow-lg relative" id="executive-luxury-room">
+                    <div class="carousel room-carousel" data-carousel-id="executive-luxury">
+                        <div class="carousel-inner h-64 overflow-hidden relative">
+                            <img src="https://codesnippet-741238344.imgix.net/eloheem/eloheem1.jpg" alt="Executive Luxury Suite Bed" class="absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-500">
+                            <img src="https://codesnippet-741238344.imgix.net/eloheem/eloheem6.jpg" alt="Executive Luxury Suite Lounge" class="absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-500 hidden">
+                            <img src="https://codesnippet-741238344.imgix.net/eloheem/eloheem4.jpg" alt="Executive Luxury Suite Bathroom" class="absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-500 hidden">
                         </div>
-                        <div class="mb-4">
-                            <label for="checkOut-executive-luxury-room" class="block text-sm font-medium text-gray-700">Check-out Date</label>
-                            <input type="date" id="checkOut-executive-luxury-room" name="checkOut" class="mt-1 block w-full p-2 border rounded" required>
-                        </div>
-                        <div class="mb-4">
-                            <label for="fullName-executive-luxury-room" class="block text-sm font-medium text-gray-700">Full Name</label>
-                            <input type="text" id="fullName-executive-luxury-room" name="fullName" class="mt-1 block w-full p-2 border rounded" required>
-                        </div>
-                        <div class="mb-4">
-                            <label for="email-executive-luxury-room" class="block text-sm font-medium text-gray-700">Email</label>
-                            <input type="email" id="email-executive-luxury-room" name="email" class="mt-1 block w-full p-2 border rounded" required>
-                        </div>
-                        <div class="mb-4">
-                            <label class="block text-sm font-medium text-gray-700">Total Price</label>
-                            <p id="totalPrice-executive-luxury-room" class="text-lg font-semibold">₦0</p>
-                        </div>
-                        <input type="hidden" name="roomType" value="EXECUTIVE_LUXURY">
-                        <input type="hidden" name="amount" id="amount-executive-luxury-room">
-                        <input type="hidden" name="currency" value="NGN">
-                        <input type="hidden" name="reference" value="txref_executive_luxury_room_123456789">
-                        <input type="hidden" name="callback_url" value="https://eloheemsuites.com/success">
-                        <input type="hidden" name="metadata" value='{"custom_fields":[{"display_name":"Room Type","variable_name":"room_type","value":"EXECUTIVE_LUXURY"}]}'>
-                        <button type="submit" class="w-full bg-green-700 text-white p-2 rounded hover:bg-green-800 accessible-focus">Confirm Booking</button>
-                        <button type="button" class="mt-2 w-full bg-gray-500 text-white p-2 rounded hover:bg-gray-600 accessible-focus" onclick="hideBookingForm('executive-luxury-room')">Cancel</button>
-                    </form>
+                        <button class="carousel-btn prev accessible-focus bg-black bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-75 absolute top-1/2 left-2 transform -translate-y-1/2 z-10" onclick="changeSlide('executive-luxury', -1)">❮</button>
+                        <button class="carousel-btn next accessible-focus bg-black bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-75 absolute top-1/2 right-2 transform -translate-y-1/2 z-10" onclick="changeSlide('executive-luxury', 1)">❯</button>
+                    </div>
+                    <h3 class="text-xl font-semibold mt-4">Executive Luxury Suite</h3>
+                    <p class="mt-2">Ultimate luxury with premium features. Rate: ₦35,000 (Total with VAT).</p>
+                    <button class="mt-4 bg-green-700 text-white p-2 rounded hover:bg-green-800 accessible-focus" onclick="showBookingForm('executive-luxury-room', 'EXECUTIVE_LUXURY', 35000)">Book Now</button>
+                    <div class="booking-form" id="booking-form-executive-luxury-room" role="region" aria-live="polite">
+                        <form class="payment-form">
+                            <h3 class="text-xl font-semibold mb-4">Book Your Executive Luxury Suite</h3>
+                            <div class="mb-4">
+                                <label for="checkIn-executive-luxury-room" class="block text-sm font-medium text-gray-700">Check-in Date</label>
+                                <input type="date" id="checkIn-executive-luxury-room" name="checkIn" class="mt-1 block w-full p-2 border rounded" required>
+                            </div>
+                            <div class="mb-4">
+                                <label for="checkOut-executive-luxury-room" class="block text-sm font-medium text-gray-700">Check-out Date</label>
+                                <input type="date" id="checkOut-executive-luxury-room" name="checkOut" class="mt-1 block w-full p-2 border rounded" required>
+                            </div>
+                            <div class="mb-4">
+                                <label for="fullName-executive-luxury-room" class="block text-sm font-medium text-gray-700">Full Name</label>
+                                <input type="text" id="fullName-executive-luxury-room" name="fullName" class="mt-1 block w-full p-2 border rounded" required>
+                            </div>
+                            <div class="mb-4">
+                                <label for="email-executive-luxury-room" class="block text-sm font-medium text-gray-700">Email</label>
+                                <input type="email" id="email-executive-luxury-room" name="email" class="mt-1 block w-full p-2 border rounded" required>
+                            </div>
+                            <div class="mb-4">
+                                <label class="block text-sm font-medium text-gray-700">Total Price</label>
+                                <p id="totalPrice-executive-luxury-room" class="text-lg font-semibold">₦0</p>
+                            </div>
+                            <input type="hidden" name="roomType" value="EXECUTIVE_LUXURY">
+                            <input type="hidden" name="amount" id="amount-executive-luxury-room">
+                            <input type="hidden" name="currency" value="NGN">
+                            <input type="hidden" name="reference" value="txref_executive_luxury_room_123456789">
+                            <input type="hidden" name="callback_url" value="https://eloheemsuites.com/success">
+                            <input type="hidden" name="metadata" value='{"custom_fields":[{"display_name":"Room Type","variable_name":"room_type","value":"EXECUTIVE_LUXURY"}]}'>
+                            <button type="submit" class="w-full bg-green-700 text-white p-2 rounded hover:bg-green-800 accessible-focus">Confirm Booking</button>
+                            <button type="button" class="mt-2 w-full bg-gray-500 text-white p-2 rounded hover:bg-gray-600 accessible-focus" onclick="hideBookingForm('executive-luxury-room')">Cancel</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
     <section id="amenities" class="py-16 bg-gray-200">
         <div class="container mx-auto">
@@ -446,240 +349,68 @@
         </div>
     </section>
 
-<section id="contact" class="py-16 bg-gray-100">
-    <div class="container mx-auto">
-        <h2 class="text-3xl font-bold text-center mb-8">Contact Us</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div class="flex justify-center">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.835434509445!2d7.483240315209711!3d9.07261499348601!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zOcKwMDQnMjEuNCJOIDfCsDI4JzU5LjciRQ!5e0!3m2!1sen!2sng!4v1699876543210!5m2!1sen!2sng" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" aria-label="Map showing location of Eloheem Suites in Kwali, Abuja"></iframe>
-            </div>
-            <div class="bg-white p-6 rounded-lg shadow-lg">
-                <h3 class="text-xl font-semibold mb-4">Send Us a Message</h3>
-                <form action="https://formspree.io/f/your_formspree_id" method="POST">
-                    <div class="mb-4">
-                        <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
-                        <input type="text" id="name" name="name" class="mt-1 block w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-green-700" required>
-                    </div>
-                    <div class="mb-4">
-                        <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
-                        <input type="email" id="email" name="email" class="mt-1 block w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-green-700" required>
-                    </div>
-                    <div class="mb-4">
-                        <label for="message" class="block text-sm font-medium text-gray-700">Message</label>
-                        <textarea id="message" name="message" rows="4" class="mt-1 block w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-green-700" required></textarea>
-                    </div>
-                    <button type="submit" class="w-full bg-green-700 text-white p-2 rounded hover:bg-green-800 focus:outline-none focus:ring-2 focus:ring-green-700">Send Message</button>
-                </form>
+    <section id="contact" class="py-16 bg-gray-100">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-8">Contact Us</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="flex justify-center">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.835434509445!2d7.483240315209711!3d9.07261499348601!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zOcKwMDQnMjEuNCJOIDfCsDI4JzU5LjciRQ!5e0!3m2!1sen!2sng!4v1699876543210!5m2!1sen!2sng" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" aria-label="Map showing location of Eloheem Suites in Kwali, Abuja"></iframe>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-semibold mb-4">Send Us a Message</h3>
+                    <form action="https://formspree.io/f/your_formspree_id" method="POST">
+                        <div class="mb-4">
+                            <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
+                            <input type="text" id="name" name="name" class="mt-1 block w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-green-700" required>
+                        </div>
+                        <div class="mb-4">
+                            <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                            <input type="email" id="email" name="email" class="mt-1 block w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-green-700" required>
+                        </div>
+                        <div class="mb-4">
+                            <label for="message" class="block text-sm font-medium text-gray-700">Message</label>
+                            <textarea id="message" name="message" rows="4" class="mt-1 block w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-green-700" required></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-green-700 text-white p-2 rounded hover:bg-green-800 focus:outline-none focus:ring-2 focus:ring-green-700">Send Message</button>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-   <footer class="bg-green-800 text-white py-8">
-    <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div>
-            <h3 class="text-xl font-semibold mb-4">Contact Us</h3>
-            <p class="mb-2">Phone: 07061266542, 08050699165, 07034230474</p>
-            <p class="mb-2">Email: info@eloheemsuites.com</p>
-            <p>Address: Kwali, Abuja, Nigeria</p>
-        </div>
-        <div>
-            <h3 class="text-xl font-semibold mb-4">Quick Links</h3>
-            <ul class="space-y-2">
-                <li><a href="#home" class="hover:text-green-300">Home</a></li>
-                <li><a href="#rooms" class="hover:text-green-300">Rooms</a></li>
-                <li><a href="#amenities" class="hover:text-green-300">Amenities</a></li>
-                <li><a href="#reviews" class="hover:text-green-300">Reviews</a></li>
-                <li><a href="#contact" class="hover:text-green-300">Contact</a></li>
-            </ul>
-        </div>
-        <div>
-            <h3 class="text-xl font-semibold mb-4">Follow Us</h3>
-            <div class="flex space-x-4">
-                <a href="https://facebook.com" target="_blank" class="hover:text-green-300"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://twitter.com" target="_blank" class="hover:text-green-300"><i class="fab fa-twitter"></i></a>
-                <a href="https://instagram.com" target="_blank" class="hover:text-green-300"><i class="fab fa-instagram"></i></a>
+    <footer class="bg-green-800 text-white py-8">
+        <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div>
+                <h3 class="text-xl font-semibold mb-4">Contact Us</h3>
+                <p class="mb-2">Phone: 07061266542, 08050699165, 07034230474</p>
+                <p class="mb-2">Email: info@eloheemsuites.com</p>
+                <p>Address: Kwali, Abuja, Nigeria</p>
+            </div>
+            <div>
+                <h3 class="text-xl font-semibold mb-4">Quick Links</h3>
+                <ul class="space-y-2">
+                    <li><a href="#home" class="hover:text-green-300">Home</a></li>
+                    <li><a href="#rooms" class="hover:text-green-300">Rooms</a></li>
+                    <li><a href="#amenities" class="hover:text-green-300">Amenities</a></li>
+                    <li><a href="#reviews" class="hover:text-green-300">Reviews</a></li>
+                    <li><a href="#contact" class="hover:text-green-300">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="text-xl font-semibold mb-4">Follow Us</h3>
+                <div class="flex space-x-4">
+                    <a href="https://facebook.com" target="_blank" class="hover:text-green-300"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://twitter.com" target="_blank" class="hover:text-green-300"><i class="fab fa-twitter"></i></a>
+                    <a href="https://instagram.com" target="_blank" class="hover:text-green-300"><i class="fab fa-instagram"></i></a>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="mt-8 text-center border-t border-green-700 pt-4">
-        <p>© 2025 Eloheem Suites. Comfort is Our Culture, Creativity is Our Passion & Perfection is Our Drive.</p>
-    </div>
-</footer>
+        <div class="mt-8 text-center border-t border-green-700 pt-4">
+            <p>© 2025 Eloheem Suites. Comfort is Our Culture, Creativity is Our Passion & Perfection is Our Drive.</p>
+        </div>
+    </footer>
 
     <script src="https://js.paystack.co/v1/inline.js"></script>
-    <script>
-        const carousels = {};
-
-        function initCarousel(carouselId) {
-            const carouselElement = document.querySelector(`.carousel[data-carousel-id="${carouselId}"]`);
-            if (carouselElement) {
-                carousels[carouselId] = {
-                    images: carouselElement.querySelectorAll('img'),
-                    currentIndex: 0,
-                    intervalId: null
-                };
-                if (carousels[carouselId].images.length > 0) {
-                    carousels[carouselId].images[0].classList.add('active');
-                    startAutoScroll(carouselId);
-                    const prevBtn = carouselElement.querySelector('.carousel-btn.prev');
-                    const nextBtn = carouselElement.querySelector('.carousel-btn.next');
-                    if (prevBtn && nextBtn) {
-                        prevBtn.addEventListener('click', () => {
-                            pauseAutoScroll(carouselId);
-                            changeSlide(carouselId, -1);
-                            startAutoScroll(carouselId);
-                        });
-                        nextBtn.addEventListener('click', () => {
-                            pauseAutoScroll(carouselId);
-                            changeSlide(carouselId, 1);
-                            startAutoScroll(carouselId);
-                        });
-                    } else {
-                        console.warn(`Buttons not found for carousel ${carouselId}`);
-                    }
-                } else {
-                    console.warn(`No images found for carousel ${carouselId}`);
-                }
-            } else {
-                console.error(`Carousel element not found for ${carouselId}`);
-            }
-        }
-
-        function changeSlide(carouselId, direction) {
-            const carousel = carousels[carouselId];
-            if (carousel && carousel.images.length > 0) {
-                carousel.images[carousel.currentIndex].classList.remove('active');
-                carousel.currentIndex = (carousel.currentIndex + direction + carousel.images.length) % carousel.images.length;
-                carousel.images[carousel.currentIndex].classList.add('active');
-            } else {
-                console.warn(`Carousel ${carouselId} not initialized or has no images`);
-            }
-        }
-
-        function startAutoScroll(carouselId) {
-            const carousel = carousels[carouselId];
-            if (carousel && !carousel.intervalId) {
-                carousel.intervalId = setInterval(() => {
-                    changeSlide(carouselId, 1);
-                }, carouselId === 'hero' ? 5000 : 3000);
-            }
-        }
-
-        function pauseAutoScroll(carouselId) {
-            const carousel = carousels[carouselId];
-            if (carousel && carousel.intervalId) {
-                clearInterval(carousel.intervalId);
-                carousel.intervalId = null;
-            }
-        }
-
-        ['hero', 'royal', 'queens-kings', 'executive-luxury', 'golden-hall', 'reception-ground'].forEach(initCarousel);
-
-        let currentForm = null;
-        let currentBasePrice = 0;
-
-        function showBookingForm(id, roomType, basePrice) {
-            if (currentForm) {
-                currentForm.classList.remove('active');
-            }
-            const form = document.getElementById(`booking-form-${id}`);
-            if (form) {
-                form.classList.add('active');
-                currentForm = form;
-                currentBasePrice = basePrice;
-
-                const totalPriceElement = form.querySelector('#totalPrice-' + id.replace(/-/g, '_'));
-                const amountInput = form.querySelector('#amount-' + id.replace(/-/g, '_'));
-                if (totalPriceElement && amountInput) {
-                    totalPriceElement.textContent = '₦0';
-                    amountInput.value = 0;
-
-                    const checkInInput = form.querySelector('#checkIn-' + id.replace(/-/g, '_'));
-                    const checkOutInput = form.querySelector('#checkOut-' + id.replace(/-/g, '_'));
-
-                    const updateTotalPrice = () => {
-                        const checkInDate = new Date(checkInInput.value);
-                        const checkOutDate = new Date(checkOutInput.value);
-                        if (checkInDate && checkOutDate && checkOutDate > checkInDate && !isNaN(checkInDate) && !isNaN(checkOutDate)) {
-                            const diffTime = Math.abs(checkOutDate - checkInDate);
-                            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-                            const totalPrice = basePrice * diffDays;
-                            totalPriceElement.textContent = `₦${totalPrice.toLocaleString()}`;
-                            amountInput.value = totalPrice * 100;
-                        } else {
-                            totalPriceElement.textContent = '₦0';
-                            amountInput.value = 0;
-                        }
-                    };
-
-                    if (checkInInput && checkOutInput) {
-                        checkInInput.addEventListener('change', updateTotalPrice);
-                        checkOutInput.addEventListener('change', updateTotalPrice);
-                    } else {
-                        console.error(`Check-in or Check-out input not found for ${id}`);
-                    }
-
-                    const paymentForm = form.querySelector('.payment-form');
-                    if (paymentForm) {
-                        paymentForm.addEventListener('submit', function(e) {
-                            e.preventDefault();
-                            const email = form.querySelector('#email-' + id.replace(/-/g, '_')).value;
-                            const amount = parseInt(amountInput.value);
-                            if (amount <= 0) {
-                                alert('Please select valid check-in and check-out dates.');
-                                return;
-                            }
-                            if (window.PaystackPop) {
-                                let handler = PaystackPop.setup({
-                                    key: 'your_public_key',
-                                    email: email,
-                                    amount: amount,
-                                    currency: 'NGN',
-                                    ref: `txref_${id}_${Date.now()}`,
-                                    callback: function(response) {
-                                        alert('Payment successful! Reference: ' + response.reference);
-                                        hideBookingForm(id);
-                                    },
-                                    onClose: function() {
-                                        alert('Transaction was not completed, window closed.');
-                                    }
-                                });
-                                handler.openIframe();
-                            } else {
-                                console.error('PaystackPop is not loaded');
-                            }
-                        });
-                    } else {
-                        console.error(`Payment form not found for ${id}`);
-                    }
-                } else {
-                    console.error(`Total price or amount input not found for ${id}`);
-                }
-            } else {
-                console.error(`Booking form not found for ${id}`);
-            }
-        }
-
-        function hideBookingForm(id) {
-            const form = document.getElementById(`booking-form-${id}`);
-            if (form) {
-                form.classList.remove('active');
-                currentForm = null;
-                currentBasePrice = 0;
-            } else {
-                console.error(`Form with ID booking-form-${id} not found`);
-            }
-        }
-
-        document.getElementById('language-switcher').addEventListener('change', function(e) {
-            const lang = e.target.value;
-            alert(`Language switched to ${lang}. (Translation functionality to be implemented)`);
-        });
-
-        if (typeof PaystackPop === 'undefined') {
-            console.error('Paystack script failed to load. Check your internet connection or script URL.');
-        }
-    </script>
+    <script src="scripts.js"></script>
 </body>
 </html>
