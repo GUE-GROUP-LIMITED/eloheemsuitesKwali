@@ -73,9 +73,46 @@
         html {
             scroll-behavior: smooth;
         }
+        /* Hamburger Menu Styling */
+        #nav-toggle {
+            display: none;
+        }
+        #nav-toggle:checked ~ #nav-menu {
+            display: block;
+        }
+        .hamburger-icon {
+            cursor: pointer;
+            display: none;
+        }
+        @media (max-width: 768px) {
+            .hamburger-icon {
+                display: block;
+            }
+            #nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: #15803d; /* Match navbar bg-green-700 */
+                padding: 1rem;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
+            #nav-menu ul {
+                flex-direction: column;
+                space-y-2;
+            }
+            #nav-menu li {
+                margin: 0.5rem 0;
+            }
+            .language-switcher {
+                margin-top: 1rem;
+            }
+        }
     </style>
 </head>
 <body class="bg-gray-100">
+    <!-- Navigation -->
     <!-- Navigation -->
     <nav class="bg-green-700 text-white p-4">
         <div class="container mx-auto flex justify-between items-center">
@@ -83,22 +120,29 @@
                 <img src="https://codesnippet-741238344.imgix.net/eloheem/PHOTO-2025-03-18-14-28-32-removebg-preview.png" alt="Eloheem Suites Logo" class="h-16 mr-4">
                 <h1 class="text-xl font-bold">Eloheem Suites Nigeria</h1>
             </div>
-            <div class="flex items-center space-x-4">
-                <ul class="flex space-x-6">
-                    <li><a href="#home" class="accessible-focus hover:text-green-200">Home</a></li>
-                    <li><a href="#rooms" class="accessible-focus hover:text-green-200">Rooms</a></li>
-                    <li><a href="#amenities" class="accessible-focus hover:text-green-200">Amenities</a></li>
-                    <li><a href="#reviews" class="accessible-focus hover:text-green-200">Reviews</a></li>
-                    <li><a href="#contact" class="accessible-focus hover:text-green-200">Contact</a></li>
-                </ul>
-                <select id="language-switcher" class="bg-green-800 text-white p-2 rounded">
-                    <option value="en">English</option>
-                    <option value="fr">French</option>
-                    <option value="ar">Arabic</option>
-                </select>
+            <div class="flex items-center">
+                <input type="checkbox" id="nav-toggle" class="hidden">
+                <label for="nav-toggle" class="hamburger-icon md:hidden">
+                    <span class="material-icons text-3xl">menu</span>
+                </label>
+                <div id="nav-menu" class="flex items-center space-x-4 md:flex">
+                    <ul class="flex space-x-6 md:space-x-6 flex-col md:flex-row">
+                        <li><a href="#home" class="accessible-focus hover:text-green-200">Home</a></li>
+                        <li><a href="#rooms" class="accessible-focus hover:text-green-200">Rooms</a></li>
+                        <li><a href="#amenities" class="accessible-focus hover:text-green-200">Amenities</a></li>
+                        <li><a href="#reviews" class="accessible-focus hover:text-green-200">Reviews</a></li>
+                        <li><a href="#contact" class="accessible-focus hover:text-green-200">Contact</a></li>
+                    </ul>
+                    <select id="language-switcher" class="bg-green-800 text-white p-2 rounded language-switcher md:ml-4">
+                        <option value="en">English</option>
+                        <option value="fr">French</option>
+                        <option value="ar">Arabic</option>
+                    </select>
+                </div>
             </div>
         </div>
     </nav>
+       
 
     <!-- Hero Carousel -->
     <section id="home" class="py-16">
