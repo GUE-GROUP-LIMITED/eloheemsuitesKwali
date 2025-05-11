@@ -111,3 +111,59 @@ html {
         margin-top: 1rem;
     }
 }
+/* styles.css */
+#booking {
+    transition: opacity 0.3s ease;
+}
+
+#booking.hidden {
+    display: none;
+}
+
+#booking .bg-white {
+    max-width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 2rem;
+}
+
+#close-modal {
+    cursor: pointer;
+    font-size: 1.5rem;
+}
+
+#close-modal:hover {
+    background-color: #4a5568;
+}
+/* styles.css */
+.carousel-inner img {
+    opacity: 0;
+}
+
+.carousel-inner img.active {
+    opacity: 1;
+}
+
+#booking {
+    transition: opacity 0.3s ease;
+}
+
+#booking.hidden {
+    display: none;
+}
+
+#booking .bg-white {
+    max-width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 2rem;
+}
+
+#close-modal {
+    cursor: pointer;
+    font-size: 1.5rem;
+}
+
+#close-modal:hover {
+    background-color: #4a5568;
+}
