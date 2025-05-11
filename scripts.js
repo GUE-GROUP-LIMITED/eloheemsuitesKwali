@@ -56,7 +56,7 @@ async function init() {
     });
 
     // Initialize carousels
-    ['hero', 'royal', 'queens-kings', 'executive-luxury', 'golden-hall', 'reception-ground'].forEach(initCarousel);
+    ['hero', 'royal', 'queens', 'executive', 'golden', 'reception'].forEach(initCarousel);
 
     // Attach event listener to the single booking form
     const bookingForm = document.getElementById('booking-form');
