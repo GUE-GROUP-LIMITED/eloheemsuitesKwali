@@ -3,6 +3,7 @@ import Hero from '../../components/Hero';
 import SectionHeading from '../../components/SectionHeading';
 import Rooms from '../../components/Rooms';
 import Amenities from '../../components/Amenities';
+import Reviews from '../../components/Reviews';
 import Contact from '../../components/Contact';
 
 const Home: React.FC = () => {
@@ -29,6 +30,8 @@ const Home: React.FC = () => {
             <Rooms onBook={handleBook} />
 
             <Amenities onBook={handleBook} />
+
+            <Reviews />
 
             <Contact />
         </div>

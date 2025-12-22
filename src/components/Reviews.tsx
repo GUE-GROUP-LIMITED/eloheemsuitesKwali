@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React from 'react';
 import { FaQuoteLeft } from 'react-icons/fa';
 
 const reviews = [
@@ -14,7 +13,8 @@ const reviews = [
 ];
 
 const Reviews: React.FC = () => {
-    const [currentIndex, setCurrentIndex] = useState(0);
+    // Single review for now based on image, can expand to slider later
+    const currentIndex = 0;
 
     return (
         <section className="client-feedback-section">
