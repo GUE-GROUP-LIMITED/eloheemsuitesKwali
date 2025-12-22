@@ -1,93 +1,146 @@
 import React from 'react';
-import { FaCamera, FaVideo, FaUtensils, FaWifi, FaCar, FaUserShield } from 'react-icons/fa';
+import { FaCamera, FaVideo, FaUtensils, FaWifi, FaCar, FaUserShield, FaTshirt, FaPaintBrush, FaShuttleVan, FaArrowRight, FaArrowDown } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 
 const Services: React.FC = () => {
     const services = [
         {
             icon: FaCamera,
-            title: "Photography",
-            description: "Capture your precious moments with our professional photography services available on requests.",
-            price: "₦10,000 / Session"
+            title: "PHOTOGRAPHY",
+            description: "Capture your precious moments with our professional photography services available on request.",
         },
         {
             icon: FaVideo,
-            title: "Projector Rental",
+            title: "PROJECTOR RENTAL",
             description: "High-definition projectors for your business meetings, seminars, and movie nights.",
-            price: "₦5,000 / Day"
         },
         {
             icon: FaUtensils,
-            title: "Catering",
+            title: "CATERING",
             description: "Exquisite local and international cuisine prepared by our top chefs for your events.",
-            price: "Custom Quotes"
         },
         {
             icon: FaWifi,
-            title: "High-Speed WiFi",
-            description: "Stay connected with our complimentary 24/7 high-speed internet access throughout the premises.",
-            price: "Free"
+            title: "HIGH-SPEED WIFI",
+            description: "Stay connected with our complimentary 24/7 high-speed internet access.",
         },
         {
             icon: FaCar,
-            title: "Ample Parking",
+            title: "AMPLE PARKING",
             description: "Secure and spacious parking space for all our guests and event attendees.",
-            price: "Free"
         },
         {
             icon: FaUserShield,
-            title: "24/7 Security",
+            title: "24/7 SECURITY",
             description: "Your safety is our priority with round-the-clock security personnel and surveillance.",
-            price: "Included"
+        },
+        {
+            icon: FaTshirt,
+            title: "LAUNDRY SERVICE",
+            description: "Professional laundry and dry cleaning services to keep you looking your best.",
+        },
+        {
+            icon: FaPaintBrush,
+            title: "EVENT DECOR",
+            description: "Transform our halls into your dream venue with our expert decoration partners.",
+        },
+        {
+            icon: FaShuttleVan,
+            title: "AIRPORT PICKUP",
+            description: "Convenient and safe transportation to and from the airport on request.",
         }
     ];
 
     return (
-        <div className="pt-24 min-h-screen bg-[#f3f4f6]">
-            <div className="bg-[#0f1f1f] text-white py-20 text-center mb-10">
-                <motion.h1
-                    initial={{ opacity: 0, y: -20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="text-4xl md:text-5xl font-serif"
-                >
-                    Our Services
-                </motion.h1>
-                <motion.p
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.2 }}
-                    className="opacity-70 mt-4 text-[#c9a66b] uppercase tracking-widest text-sm"
-                >
-                    More Than Just A Stay
-                </motion.p>
-            </div>
+        <div className="services-page-container">
+            <div className="container relative mx-auto px-4 pt-32 pb-20">
 
-            <div className="container mx-auto px-4 pb-24">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {services.map((service, index) => (
+                {/* Top Section */}
+                <div className="flex flex-col lg:flex-row justify-between items-start mb-20 gap-10">
+                    <div className="lg:w-1/2">
                         <motion.div
-                            key={index}
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: index * 0.1 }}
-                            className="bg-white p-8 rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 group border border-gray-100"
+                            initial={{ opacity: 0, x: -20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            className="flex items-center gap-4 mb-4"
                         >
-                            <div className="h-14 w-14 bg-[#f0f0f0] group-hover:bg-[#c9a66b] rounded-full flex items-center justify-center mb-6 text-[#1e1e1e] group-hover:text-white text-2xl transition-colors duration-300">
-                                <service.icon />
-                            </div>
-                            <h3 className="text-xl font-serif font-bold mb-3 text-[#1e1e1e]">{service.title}</h3>
-                            <p className="text-gray-600 mb-6 leading-relaxed text-sm">{service.description}</p>
-                            <div className="pt-4 border-t border-gray-100">
-                                <span className="text-[#0f3d3e] font-bold text-lg">{service.price}</span>
-                            </div>
+                            <div className="h-[2px] w-10 bg-[#c9a66b]"></div>
+                            <span className="text-[#c9a66b] uppercase tracking-widest text-xs font-bold">What We Offer</span>
                         </motion.div>
-                    ))}
+                        <motion.h1
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.1 }}
+                            className="text-5xl md:text-7xl font-sans font-bold text-white leading-tight"
+                        >
+                            OUR<br />SERVICES
+                        </motion.h1>
+                    </div>
+
+                    <div className="lg:w-1/2 flex flex-col items-start lg:items-end">
+                        <motion.p
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ delay: 0.2 }}
+                            className="text-gray-400 max-w-md mb-8 lg:text-right leading-relaxed"
+                        >
+                            There are many variations of services available, but the majority have suffered alteration in some form. We provide top-notch hospitality services tailored to your needs.
+                        </motion.p>
+
+                        <motion.button
+                            initial={{ opacity: 0, scale: 0.9 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ delay: 0.3 }}
+                            className="btn-all-services"
+                        >
+                            Contact For Services
+                        </motion.button>
+                    </div>
                 </div>
+
+                <div className="flex flex-col lg:flex-row gap-16">
+                    {/* Sidebar Indicator */}
+                    <div className="hidden lg:flex flex-col items-center justify-start pt-10 w-24 flex-shrink-0">
+                        <span className="scrolldown-text">SCROLL DOWN</span>
+                        <div className="h-24 w-[1px] bg-gray-700 my-4"></div>
+                        <div className="w-10 h-10 rounded-full border border-gray-600 flex items-center justify-center text-white animate-bounce">
+                            <FaArrowDown size={12} />
+                        </div>
+                    </div>
+
+                    {/* Services Grid */}
+                    <div className="flex-1 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        {services.map((service, index) => (
+                            <motion.div
+                                key={index}
+                                initial={{ opacity: 0, y: 30 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: index * 0.05 }}
+                                className="service-card-new group"
+                            >
+                                <div className="service-icon-new">
+                                    <service.icon />
+                                </div>
+                                <h3 className="service-title-new">{service.title}</h3>
+                                <p className="service-desc-new">
+                                    {service.description}
+                                </p>
+
+                                <div className="service-readmore">
+                                    <span>READ MORE</span>
+                                    <FaArrowRight className="text-xs transition-transform group-hover:translate-x-1" />
+                                </div>
+
+                                {/* Bottom Border Highlight */}
+                                <div className="service-highlight"></div>
+                            </motion.div>
+                        ))}
+                    </div>
+                </div>
+
             </div>
         </div>
     );
 };
 
 export default Services;
-

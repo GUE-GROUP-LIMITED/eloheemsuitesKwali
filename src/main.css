@@ -1191,3 +1191,125 @@ h6 {
         padding: 0 20px;
     }
 }
+
+/* New Services Page Styles */
+.services-page-container {
+    background-color: #050505;
+    /* Deep Black/Dark */
+    min-height: 100vh;
+    color: #fff;
+    font-family: var(--font-sans);
+}
+
+.btn-all-services {
+    background: linear-gradient(90deg, #ff4d4d 0%, #800080 100%);
+    /* Red to Purple gradient as per image */
+    color: white;
+    padding: 12px 30px;
+    border-radius: 30px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(255, 77, 77, 0.4);
+    transition: transform 0.3s;
+}
+
+.btn-all-services:hover {
+    transform: scale(1.05);
+}
+
+.scrolldown-text {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+    color: #666;
+}
+
+.service-card-new {
+    background-color: #0a0a0a;
+    border: 1px solid #1a1a1a;
+    padding: 40px 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    /* Left aligned content as per image */
+    position: relative;
+    overflow: hidden;
+    transition: background-color 0.3s;
+    height: 100%;
+}
+
+.service-card-new:hover {
+    background-color: #0f1f1f;
+}
+
+.service-icon-new {
+    font-size: 2.5rem;
+    color: #fff;
+    margin-bottom: 30px;
+    font-weight: 100;
+    /* Thin lines */
+}
+
+/* Make icons look more like line icons if possible, currently using FA solid/regular */
+.service-icon-new svg {
+    stroke: currentColor;
+    stroke-width: 0;
+    /* FA icons are fills generally, stroke hacks might not work well without specific SVG */
+}
+
+.service-title-new {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #fff;
+    line-height: 1.4;
+    max-width: 70%;
+}
+
+.service-desc-new {
+    font-size: 0.85rem;
+    color: #888;
+    margin-bottom: 40px;
+    /* Spacer */
+    line-height: 1.6;
+    flex-grow: 1;
+    /* Push read more down */
+}
+
+.service-readmore {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #fff;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.3s;
+    margin-top: auto;
+}
+
+.service-card-new:hover .service-readmore {
+    opacity: 1;
+}
+
+.service-highlight {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    height: 3px;
+    background-color: #fff;
+    /* or gradient */
+    transition: width 0.4s ease;
+}
+
+.service-card-new:hover .service-highlight {
+    width: 100%;
+}
