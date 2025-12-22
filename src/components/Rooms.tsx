@@ -1,16 +1,15 @@
-import React, { useState } from 'react';
-import { rooms, Room } from '../data/rooms';
+import React from 'react';
+import { rooms } from '../data/rooms';
+import type { Room } from '../data/rooms';
 import SectionHeading from './SectionHeading';
 import RoomCard from './RoomCard';
-import { AnimatePresence, motion } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 interface RoomsProps {
     onBook: (room: Room) => void;
 }
 
 const Rooms: React.FC<RoomsProps> = ({ onBook }) => {
-    const [filter, setFilter] = useState('ALL');
-
     const accommodationRooms = rooms.filter(room =>
         ['ROYAL', 'QUEENS_KINGS', 'EXECUTIVE_LUXURY'].includes(room.type)
     );
