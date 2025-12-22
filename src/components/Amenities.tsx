@@ -1,5 +1,6 @@
 import React from 'react';
-import { rooms, Room } from '../data/rooms';
+import { rooms } from '../data/rooms';
+import type { Room } from '../data/rooms';
 import SectionHeading from './SectionHeading';
 import { motion } from 'framer-motion';
 
