@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Room } from '../data/rooms';
+import type { Room } from '../data/rooms';
 import { FaTimes } from 'react-icons/fa';
 
 interface BookingModalProps {
