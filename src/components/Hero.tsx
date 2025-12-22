@@ -13,78 +13,84 @@ const Hero: React.FC = () => {
     useEffect(() => {
         const timer = setInterval(() => {
             setCurrentImage((prev) => (prev + 1) % heroImages.length);
-        }, 5000);
+        }, 6000);
         return () => clearInterval(timer);
     }, []);
 
     return (
-        <section id="home" className="relative w-full h-screen overflow-hidden bg-black">
-            {/* Background Slider */}
+        <section className="hero">
+            {/* Background Slideshow */}
             <AnimatePresence mode='wait'>
                 <motion.img
                     key={currentImage}
                     src={heroImages[currentImage]}
                     alt="Hero Background"
+                    className="hero-image"
                     initial={{ opacity: 0, scale: 1.1 }}
-                    animate={{ opacity: 0.6, scale: 1 }}
+                    animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0 }}
-                    transition={{ duration: 1.5 }}
-                    className="absolute inset-0 w-full h-full object-cover"
+                    transition={{ duration: 2 }}
                 />
             </AnimatePresence>
 
-            {/* Overlay Gradient */}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#121212] via-transparent to-black/30" />
+            <div className="hero-overlay"></div>
 
-            {/* Content */}
-            <div className="relative z-10 h-full flex flex-col justify-center items-center text-center px-4">
+            {/* Main Content */}
+            <div className="hero-content">
                 <motion.p
+                    className="hero-subtitle"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.5, duration: 0.8 }}
-                    className="text-[#c9a66b] uppercase tracking-[0.2em] mb-4 text-sm md:text-base font-semibold"
+                    transition={{ delay: 0.5 }}
                 >
-                    Welcome to Eloheem Suites
+                    EXPERIENCE
                 </motion.p>
-
                 <motion.h1
+                    className="hero-title"
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.8, duration: 0.8 }}
-                    className="text-5xl md:text-7xl lg:text-9xl font-serif text-white mb-6 leading-tight"
+                    transition={{ delay: 0.8 }}
                 >
-                    Comfort is <br /> Our Culture
+                    A VACATION WITH CLASS
                 </motion.h1>
-
                 <motion.p
+                    className="hero-quote"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    transition={{ delay: 1.2, duration: 0.8 }}
-                    className="text-gray-300 max-w-2xl text-lg md:text-xl font-light mb-10"
+                    transition={{ delay: 1.1 }}
                 >
-                    Experience luxury and comfort at our holiness camp ground in Kwali, Abuja.
+                    You know you deserve it!
                 </motion.p>
-
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 1.5, duration: 0.8 }}
-                >
-                    <a href="#rooms" className="px-8 py-4 bg-[#c9a66b] text-white font-semibold rounded-full hover:bg-[#8e7547] transition-all transform hover:scale-105 shadow-xl">
-                        Explore Rooms
-                    </a>
-                </motion.div>
             </div>
 
-            {/* Scroll Indicator */}
+            {/* Booking Bar */}
             <motion.div
-                className="absolute bottom-10 left-1/2 transform -translate-x-1/2 text-white/50 flex flex-col items-center gap-2"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1, y: [0, 10, 0] }}
-                transition={{ delay: 2, duration: 2, repeat: Infinity }}
+                className="booking-bar"
+                initial={{ y: 100, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 1.5, type: 'spring', stiffness: 50 }}
             >
-                <span className="text-xs uppercase tracking-widest">Scroll</span>
-                <div className="w-[1px] h-12 bg-gradient-to-b from-white to-transparent"></div>
+                <div className="booking-item">
+                    <label>Check Availability:</label>
+                    {/* Purely decorative label context */}
+                </div>
+                <div className="booking-item">
+                    <label>Check In</label>
+                    <input type="date" className="booking-input" />
+                </div>
+                <div className="booking-item">
+                    <label>Check Out</label>
+                    <input type="date" className="booking-input" />
+                </div>
+                <div className="booking-item">
+                    <label>Persons</label>
+                    <select className="booking-input">
+                        <option>1 Person</option>
+                        <option>2 Persons</option>
+                        <option>Family</option>
+                    </select>
+                </div>
+                <button className="booking-btn">Check</button>
             </motion.div>
         </section>
     );
