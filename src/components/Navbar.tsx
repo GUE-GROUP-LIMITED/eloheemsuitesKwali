@@ -50,6 +50,7 @@ const Navbar: React.FC = () => {
                     {/* Right Menu (Desktop) */}
                     <ul className="nav-menu">
                         <li><NavLink to="/gallery" className={({ isActive }) => (isActive ? 'active' : '')}>Gallery</NavLink></li>
+                        <li><NavLink to="/reviews" className={({ isActive }) => (isActive ? 'active' : '')}>Reviews</NavLink></li>
                         <li><NavLink to="/contact" className={({ isActive }) => (isActive ? 'active' : '')}>Contact</NavLink></li>
                         <li><NavLink to="/about" className={({ isActive }) => (isActive ? 'active' : '')}>About Us</NavLink></li>
                     </ul>
@@ -71,6 +72,7 @@ const Navbar: React.FC = () => {
                             <li><NavLink to="/rooms" onClick={() => setMobileMenuOpen(false)}>Rooms</NavLink></li>
                             <li><NavLink to="/services" onClick={() => setMobileMenuOpen(false)}>Our Services</NavLink></li>
                             <li><NavLink to="/gallery" onClick={() => setMobileMenuOpen(false)}>Gallery</NavLink></li>
+                            <li><NavLink to="/reviews" onClick={() => setMobileMenuOpen(false)}>Reviews</NavLink></li>
                             <li><NavLink to="/contact" onClick={() => setMobileMenuOpen(false)}>Contact</NavLink></li>
                             <li><NavLink to="/about" onClick={() => setMobileMenuOpen(false)}>About Us</NavLink></li>
                         </ul>

@@ -1,20 +1,38 @@
-import React from 'react';
-import { FaQuoteLeft } from 'react-icons/fa';
+import React, { useState } from 'react';
+import { FaQuoteLeft, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const reviews = [
     {
-        text: "I just wanted to share a quick note and let you know that you guys do a really good job.",
-        author: "Rohan Sing",
-        role: "Project Manager, Airflow Tech Inc",
-        result: "", // Optional specific result text if needed
-        image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=774&q=80"
+        text: "A wonderful stay! The Royal Room was cozy and the staff were incredibly welcoming.",
+        author: "Sarah M.",
+        role: "Guest from UK",
+        image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&auto=format&fit=crop&w=687&q=80"
     },
-    // Add more if needed for a slider later
+    {
+        text: "The Golden Hall was perfect for our family event. Everything was flawless!",
+        author: "Ahmed K.",
+        role: "Event Host, Nigeria",
+        image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=687&q=80"
+    },
+    {
+        text: "Luxury at its best! The Executive Suite exceeded my expectations.",
+        author: "Emily R.",
+        role: "Business Traveler, USA",
+        image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=688&q=80"
+    }
 ];
 
 const Reviews: React.FC = () => {
-    // Single review for now based on image, can expand to slider later
-    const currentIndex = 0;
+    const [currentIndex, setCurrentIndex] = useState(0);
+
+    const nextReview = () => {
+        setCurrentIndex((prev) => (prev + 1) % reviews.length);
+    };
+
+    const prevReview = () => {
+        setCurrentIndex((prev) => (prev - 1 + reviews.length) % reviews.length);
+    };
 
     return (
         <section className="client-feedback-section">
@@ -22,7 +40,7 @@ const Reviews: React.FC = () => {
 
                 {/* Header Decoration */}
                 <div className="feedback-header">
-                    <span>CLIENT FEEDBACK</span>
+                    <span>GUEST REVIEWS</span>
                     <div className="feedback-line"></div>
                 </div>
 
@@ -34,38 +52,57 @@ const Reviews: React.FC = () => {
                 </div>
 
                 <div className="feedback-content">
-                    {/* Quote Icon */}
-                    <div className="quote-icon-large">
-                        <FaQuoteLeft />
-                    </div>
+                    {/* Controls */}
+                    <button className="slider-btn prev" onClick={prevReview}>
+                        <FaChevronLeft />
+                    </button>
+                    <button className="slider-btn next" onClick={nextReview}>
+                        <FaChevronRight />
+                    </button>
 
-                    {/* Main Quote Text */}
-                    <div className="quote-text-container">
-                        <h2>{reviews[currentIndex].text}</h2>
-                    </div>
+                    <AnimatePresence mode='wait'>
+                        <motion.div
+                            key={currentIndex}
+                            initial={{ opacity: 0, x: 20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            exit={{ opacity: 0, x: -20 }}
+                            transition={{ duration: 0.5 }}
+                            className="review-slide-content"
+                        >
+                            {/* Quote Icon */}
+                            <div className="quote-icon-large">
+                                <FaQuoteLeft />
+                            </div>
 
-                    <div className="feedback-footer">
-                        {/* Author Info */}
-                        <div className="author-info">
-                            <h3>{reviews[currentIndex].author}</h3>
-                            <p>{reviews[currentIndex].role}</p>
-                            <svg className="wavy-line" width="100" height="15" viewBox="0 0 100 15">
-                                <path d="M0,10 Q20,20 40,10 T80,10 T120,10" fill="none" stroke="white" strokeWidth="2" />
-                            </svg>
-                        </div>
+                            {/* Main Quote Text */}
+                            <div className="quote-text-container">
+                                <h2>{reviews[currentIndex].text}</h2>
+                            </div>
 
-                        {/* Image Shape */}
-                        <div className="author-image-container">
-                            <div className="cross-shape-border">
-                                <div className="cross-shape">
-                                    <img src={reviews[currentIndex].image} alt={reviews[currentIndex].author} />
+                            <div className="feedback-footer">
+                                {/* Author Info */}
+                                <div className="author-info">
+                                    <h3>{reviews[currentIndex].author}</h3>
+                                    <p>{reviews[currentIndex].role}</p>
+                                    <svg className="wavy-line" width="100" height="15" viewBox="0 0 100 15">
+                                        <path d="M0,10 Q20,20 40,10 T80,10 T120,10" fill="none" stroke="var(--secondary-color)" strokeWidth="2" />
+                                    </svg>
+                                </div>
+
+                                {/* Image Shape */}
+                                <div className="author-image-container">
+                                    <div className="cross-shape-border">
+                                        <div className="cross-shape">
+                                            <img src={reviews[currentIndex].image} alt={reviews[currentIndex].author} />
+                                        </div>
+                                    </div>
+                                    {/* Decorative doodles around image */}
+                                    <div className="doodle-lines top-left"></div>
+                                    <div className="doodle-lines bottom-right"></div>
                                 </div>
                             </div>
-                            {/* Decorative doodles around image */}
-                            <div className="doodle-lines top-left"></div>
-                            <div className="doodle-lines bottom-right"></div>
-                        </div>
-                    </div>
+                        </motion.div>
+                    </AnimatePresence>
                 </div>
 
                 {/* Bottom Decoration */}
