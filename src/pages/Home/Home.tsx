@@ -1,10 +1,9 @@
 import React from 'react';
-import Hero from '../components/Hero';
-import SectionHeading from '../components/SectionHeading';
-import Rooms from '../components/Rooms'; // Reusing purely for layout, might need adjusting
-import Amenities from '../components/Amenities';
-import Contact from '../components/Contact';
-import Footer from '../components/Footer';
+import Hero from '../../components/Hero';
+import SectionHeading from '../../components/SectionHeading';
+import Rooms from '../../components/Rooms';
+import Amenities from '../../components/Amenities';
+import Contact from '../../components/Contact';
 
 const Home: React.FC = () => {
     // We need to pass dummy handlers since we are reusing components that expect props

@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import SectionHeading from '../../components/SectionHeading';
 import RoomCard from '../../components/RoomCard';
 import { rooms } from '../../data/rooms';
-import { Room } from '../../data/rooms';
-import BookingModal from '../../components/BookingModal'; // Assuming we want booking here too
+import type { Room } from '../../data/rooms';
+import BookingModal from '../../components/BookingModal';
 
 const RoomsPage: React.FC = () => {
     const [selectedRoom, setSelectedRoom] = useState<Room | null>(null);
@@ -19,13 +18,9 @@ const RoomsPage: React.FC = () => {
     );
 
     return (
-        <div className="pt-24 min-h-screen bg-[#f9f9f9]">
-            <div className="bg-[#0f1f1f] text-white py-20 text-center mb-10">
-                <h1 className="text-4xl md:text-5xl font-serif">Our Rooms</h1>
-                <p className="opacity-70 mt-4">Luxury & Comfort Defined</p>
-            </div>
-
-            <div className="container mx-auto px-4 pb-20">
+        <div className="rooms-section pt-32"> {/* Added padding for fixed navbar */}
+            <div className="container">
+                <h2>HOTEL LUXURY ACCOMMODATIONS</h2>
                 <div className="room-grid">
                     {accommodationRooms.map(room => (
                         <RoomCard key={room.id} room={room} onBook={handleBook} />

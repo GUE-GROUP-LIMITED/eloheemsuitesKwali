@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
 /* Main.css - Custom Styling replacing Tailwind */
 
 /* Variables */
@@ -9,13 +12,19 @@
     --text-dark: #1a1a1a;
     --text-light: #f4f4f4;
     --bg-light: #ffffff;
-    --bg-dark: #0f1f1f;
+    --bg-dark: #000000;
     --font-serif: 'Playfair Display', serif;
-    --font-sans: 'Inter', sans-serif;
+    --font-sans: 'Montserrat', sans-serif;
     --transition: all 0.3s ease-in-out;
 }
 
 /* Global Resets handled in index.css, adding specific utilities here */
+
+body {
+    font-family: var(--font-sans);
+    background-color: var(--bg-light);
+    color: var(--text-dark);
+}
 
 .btn {
     padding: 12px 24px;
@@ -27,7 +36,7 @@
     letter-spacing: 1px;
     transition: var(--transition);
     font-family: var(--font-sans);
-    font-size: 0.9rem;
+    font-size: 0.8rem;
 }
 
 .btn-primary {
@@ -39,16 +48,98 @@
     background-color: #b08d55;
 }
 
-.btn-outline {
-    background-color: transparent;
-    border: 1px solid var(--secondary-color);
-    color: var(--secondary-color);
-}
-
-.btn-outline:hover {
-    background-color: var(--secondary-color);
+/* Rooms Section Specifics - Pixel Perfect Dark Theme */
+.rooms-section {
+    background-color: #000;
+    padding: 80px 0;
     color: #fff;
 }
+
+.rooms-section h2 {
+    font-family: var(--font-sans);
+    text-transform: uppercase;
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 3rem;
+    text-align: center;
+    letter-spacing: 2px;
+}
+
+.room-card {
+    background-color: transparent;
+    border-radius: 0;
+    overflow: hidden;
+    position: relative;
+    /* Card layout */
+    display: flex;
+    flex-direction: column;
+}
+
+.room-card-image {
+    width: 100%;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+    border-radius: 8px;
+    /* Slightly rounded corners as per image */
+    margin-bottom: 20px;
+}
+
+.room-card-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    font-family: var(--font-sans);
+}
+
+.room-card-desc {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 20px;
+    line-height: 1.4;
+    min-height: 40px;
+    /* Ensure alignment */
+}
+
+.room-card-buttons {
+    display: flex;
+    gap: 15px;
+}
+
+.btn-more-info {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    flex: 1;
+    text-align: center;
+}
+
+.btn-more-info:hover {
+    border-color: #fff;
+}
+
+.btn-book-now {
+    background: #fff;
+    border: 1px solid #fff;
+    color: #000;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    flex: 1;
+    text-align: center;
+}
+
+.btn-book-now:hover {
+    background: #e0e0e0;
+}
+
+
+/* ... (Retaining previous styles for Navbar, Hero etc.) ... */
 
 .section-padding {
     padding: 80px 0;
@@ -65,11 +156,11 @@ h6 {
     margin-bottom: 1rem;
 }
 
-p {
+/* Override headings for the specific designs where sans-serif is used */
+.sans-heading {
     font-family: var(--font-sans);
-    margin-bottom: 1rem;
-    line-height: 1.6;
 }
+
 
 /* Navigation - Split Style */
 .navbar {
@@ -119,11 +210,6 @@ p {
 .nav-logo {
     flex: 0 0 auto;
     text-align: center;
-}
-
-.nav-logo img {
-    height: 60px;
-    object-fit: contain;
 }
 
 .nav-logo h1 {
@@ -276,13 +362,20 @@ p {
     background-color: var(--secondary-color);
 }
 
-/* Room Cards Grid */
+/* Room Cards Grid Container */
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
 .room-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-    gap: 30px;
-    padding: 20px;
+    gap: 40px;
+    padding: 20px 0;
 }
+
 
 @media (max-width: 768px) {
     .hero-title {
@@ -308,8 +401,11 @@ p {
         display: none;
     }
 
-    /* Mobile menu implementation needed later */
     .top-bar {
         justify-content: center;
+    }
+
+    .room-grid {
+        grid-template-columns: 1fr;
     }
 }
