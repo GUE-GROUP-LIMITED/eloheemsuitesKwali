@@ -745,3 +745,73 @@ h6 {
     background-color: var(--secondary-color);
     margin: 0 auto;
 }
+
+/* Reviews Section */
+.reviews-section {
+    background-color: #fff;
+    padding: 80px 0;
+}
+
+.review-card {
+    background-color: #f9f9f9;
+    padding: 30px;
+    border-radius: 8px;
+    position: relative;
+    transition: box-shadow 0.3s ease;
+}
+
+.review-card:hover {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+}
+
+.review-quote-icon {
+    font-size: 3rem;
+    color: var(--secondary-color);
+    opacity: 0.2;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
+
+.review-text {
+    color: #555;
+    font-style: italic;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 1;
+    padding-top: 10px;
+}
+
+.review-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #eee;
+    padding-top: 15px;
+}
+
+.review-author h4 {
+    font-family: var(--font-serif);
+    font-size: 1.1rem;
+    margin-bottom: 2px;
+}
+
+.review-author span {
+    font-size: 0.75rem;
+    color: #999;
+    text-transform: uppercase;
+}
+
+.review-stars {
+    display: flex;
+    color: #ffd700;
+    gap: 2px;
+}
+
+.star-filled {
+    color: #ffd700;
+}
+
+.star-empty {
+    color: #e0e0e0;
+}
