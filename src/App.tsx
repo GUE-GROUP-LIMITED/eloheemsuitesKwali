@@ -7,7 +7,7 @@ import Reviews from './components/Reviews';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import BookingModal from './components/BookingModal';
-import { Room } from './data/rooms';
+import type { Room } from './data/rooms';
 
 const App: React.FC = () => {
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
