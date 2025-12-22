@@ -1,64 +1,79 @@
-import React from 'react';
-import SectionHeading from './SectionHeading';
-import { motion } from 'framer-motion';
-import { FaStar, FaQuoteLeft } from 'react-icons/fa';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { FaQuoteLeft } from 'react-icons/fa';
 
 const reviews = [
     {
-        text: "A wonderful stay! The Royal Room was cozy and the staff were incredibly welcoming.",
-        author: "Sarah M.",
-        location: "UK",
-        rating: 4
+        text: "I just wanted to share a quick note and let you know that you guys do a really good job.",
+        author: "Rohan Sing",
+        role: "Project Manager, Airflow Tech Inc",
+        result: "", // Optional specific result text if needed
+        image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=774&q=80"
     },
-    {
-        text: "The Golden Hall was perfect for our family event. Everything was flawless!",
-        author: "Ahmed K.",
-        location: "Nigeria",
-        rating: 5
-    },
-    {
-        text: "Luxury at its best! The Executive Suite exceeded my expectations.",
-        author: "Emily R.",
-        location: "USA",
-        rating: 4
-    }
+    // Add more if needed for a slider later
 ];
 
 const Reviews: React.FC = () => {
+    const [currentIndex, setCurrentIndex] = useState(0);
+
     return (
-        <section id="reviews" className="reviews-section">
-            <div className="container">
-                <SectionHeading
-                    title="Guest Reviews"
-                    subtitle="What People Say"
-                />
+        <section className="client-feedback-section">
+            <div className="container relative">
 
-                <div className="room-grid"> {/* Reusing grid layout */}
-                    {reviews.map((review, index) => (
-                        <motion.div
-                            key={index}
-                            className="review-card"
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: index * 0.2 }}
-                        >
-                            <FaQuoteLeft className="review-quote-icon" />
-                            <p className="review-text">"{review.text}"</p>
+                {/* Header Decoration */}
+                <div className="feedback-header">
+                    <span>CLIENT FEEDBACK</span>
+                    <div className="feedback-line"></div>
+                </div>
 
-                            <div className="review-footer">
-                                <div className="review-author">
-                                    <h4>{review.author}</h4>
-                                    <span>{review.location}</span>
-                                </div>
-                                <div className="review-stars">
-                                    {[...Array(5)].map((_, i) => (
-                                        <FaStar key={i} className={i < review.rating ? "star-filled" : "star-empty"} />
-                                    ))}
+                {/* Top Right Decoration */}
+                <div className="absolute top-0 right-0 p-4">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.5)" strokeWidth="2">
+                        <path d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </div>
+
+                <div className="feedback-content">
+                    {/* Quote Icon */}
+                    <div className="quote-icon-large">
+                        <FaQuoteLeft />
+                    </div>
+
+                    {/* Main Quote Text */}
+                    <div className="quote-text-container">
+                        <h2>{reviews[currentIndex].text}</h2>
+                    </div>
+
+                    <div className="feedback-footer">
+                        {/* Author Info */}
+                        <div className="author-info">
+                            <h3>{reviews[currentIndex].author}</h3>
+                            <p>{reviews[currentIndex].role}</p>
+                            <svg className="wavy-line" width="100" height="15" viewBox="0 0 100 15">
+                                <path d="M0,10 Q20,20 40,10 T80,10 T120,10" fill="none" stroke="white" strokeWidth="2" />
+                            </svg>
+                        </div>
+
+                        {/* Image Shape */}
+                        <div className="author-image-container">
+                            <div className="cross-shape-border">
+                                <div className="cross-shape">
+                                    <img src={reviews[currentIndex].image} alt={reviews[currentIndex].author} />
                                 </div>
                             </div>
-                        </motion.div>
-                    ))}
+                            {/* Decorative doodles around image */}
+                            <div className="doodle-lines top-left"></div>
+                            <div className="doodle-lines bottom-right"></div>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Bottom Decoration */}
+                <div className="absolute bottom-10 left-10 opacity-20">
+                    <svg width="40" height="20" viewBox="0 0 40 20">
+                        <path d="M0,10 Q10,0 20,10 T40,10" fill="none" stroke="white" strokeWidth="2" />
+                        <path d="M0,15 Q10,5 20,15 T40,15" fill="none" stroke="white" strokeWidth="2" />
+                    </svg>
                 </div>
             </div>
         </section>
