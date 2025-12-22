@@ -1,7 +1,6 @@
 import React from 'react';
 import { rooms } from '../data/rooms';
 import type { Room } from '../data/rooms';
-import SectionHeading from './SectionHeading';
 import RoomCard from './RoomCard';
 import { motion } from 'framer-motion';
 
@@ -15,14 +14,11 @@ const Rooms: React.FC<RoomsProps> = ({ onBook }) => {
     );
 
     return (
-        <section id="rooms" className="py-24 bg-[#f3f4f6]">
-            <div className="container mx-auto px-4">
-                <SectionHeading
-                    title="Luxury Accommodations"
-                    subtitle="Stay in Comfort"
-                />
+        <section id="rooms" className="rooms-section">
+            <div className="container">
+                <h2>Hotel Luxury Accommodations</h2>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div className="room-grid">
                     {accommodationRooms.map((room, index) => (
                         <motion.div
                             key={room.id}

@@ -1,7 +1,6 @@
 import React from 'react';
 import { rooms } from '../data/rooms';
 import type { Room } from '../data/rooms';
-import SectionHeading from './SectionHeading';
 import { motion } from 'framer-motion';
 
 interface AmenitiesProps {
@@ -14,19 +13,18 @@ const Amenities: React.FC<AmenitiesProps> = ({ onBook }) => {
     );
 
     return (
-        <section id="amenities" className="py-24 bg-[#121212] text-white">
-            <div className="container mx-auto px-4">
-                <SectionHeading
-                    title="Events & Halls"
-                    subtitle="Host With Us"
-                    light={true}
-                />
+        <section id="amenities" className="amenities-section">
+            <div className="container">
+                <div className="text-center mb-10">
+                    <span style={{ color: 'var(--secondary-color)', textTransform: 'uppercase', letterSpacing: '2px', fontSize: '0.9rem' }}>Host With Us</span>
+                    <h2 style={{ fontSize: '3rem', margin: '10px 0' }}>Events & Halls</h2>
+                </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mt-12">
+                <div className="amenities-grid">
                     {eventSpaces.map((space, index) => (
                         <motion.div
                             key={space.id}
-                            className="relative group overflow-hidden rounded-xl h-[400px]"
+                            className="amenity-card group"
                             initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
@@ -35,21 +33,21 @@ const Amenities: React.FC<AmenitiesProps> = ({ onBook }) => {
                             <img
                                 src={space.images[0]}
                                 alt={space.name}
-                                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-50"
+                                className="amenity-img"
                             />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-90" />
+                            <div className="amenity-overlay" />
 
-                            <div className="absolute bottom-0 left-0 p-8 w-full">
-                                <h3 className="text-3xl font-serif mb-2">{space.name}</h3>
-                                <p className="text-gray-300 mb-4">{space.description}</p>
-                                <div className="flex justify-between items-end">
-                                    <div>
-                                        <span className="text-xs text-[#c9a66b] uppercase tracking-wider block mb-1">Starting Rate</span>
-                                        <span className="text-2xl font-bold">₦{space.price.toLocaleString()}</span>
+                            <div className="amenity-content">
+                                <h3 className="amenity-title">{space.name}</h3>
+                                <p className="amenity-desc">{space.description}</p>
+                                <div className="amenity-actions">
+                                    <div className="amenity-price">
+                                        <span>Starting Rate</span>
+                                        ₦{space.price.toLocaleString()}
                                     </div>
                                     <button
                                         onClick={() => onBook(space)}
-                                        className="px-6 py-2 bg-[#c9a66b] text-white rounded-full hover:bg-[#b08d55] transition-colors cursor-pointer"
+                                        className="btn-book-event"
                                     >
                                         Book Event
                                     </button>
@@ -59,13 +57,11 @@ const Amenities: React.FC<AmenitiesProps> = ({ onBook }) => {
                     ))}
                 </div>
 
-                <div className="mt-16 text-center text-gray-400">
-                    <p className="mb-4 text-lg">Additional Services</p>
-                    <div className="flex flex-wrap justify-center gap-6">
-                        <span className="border border-gray-700 px-4 py-2 rounded-full hover:border-[#c9a66b] hover:text-[#c9a66b] transition-colors cursor-default">Photography (₦10,000)</span>
-                        <span className="border border-gray-700 px-4 py-2 rounded-full hover:border-[#c9a66b] hover:text-[#c9a66b] transition-colors cursor-default">Projector (₦5,000/day)</span>
-                        <span className="border border-gray-700 px-4 py-2 rounded-full hover:border-[#c9a66b] hover:text-[#c9a66b] transition-colors cursor-default">Catering Services</span>
-                    </div>
+                <div className="services-list text-center">
+                    <p style={{ width: '100%', marginBottom: '20px', fontSize: '1.2rem', color: '#999' }}>Additional Services</p>
+                    <span className="service-badge">Photography (₦10,000)</span>
+                    <span className="service-badge">Projector (₦5,000/day)</span>
+                    <span className="service-badge">Catering Services</span>
                 </div>
             </div>
         </section>
