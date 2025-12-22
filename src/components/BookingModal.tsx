@@ -16,7 +16,7 @@ declare global {
 }
 
 const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose, room }) => {
-    const [step, setStep] = useState(1);
+
     const [formData, setFormData] = useState({
         checkIn: '',
         checkOut: '',
