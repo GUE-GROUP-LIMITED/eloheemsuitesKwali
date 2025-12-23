@@ -2,6 +2,7 @@ import React from 'react';
 import Navbar from './components/Navbar';
 import Home from './pages/Home/Home';
 import RoomsPage from './pages/Rooms/Rooms';
+import RoomDetails from './pages/RoomDetails/RoomDetails';
 import Services from './pages/Services/Services';
 import ContactPage from './pages/Contact/Contact';
 import About from './pages/About/About';
@@ -17,6 +18,7 @@ const App: React.FC = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/rooms" element={<RoomsPage />} />
+        <Route path="/rooms/:id" element={<RoomDetails />} />
         <Route path="/services" element={<Services />} />
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/reviews" element={<ReviewsPage />} />
