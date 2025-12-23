@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { rooms } from '../../data/rooms';
 import { useNavigate } from 'react-router-dom';
 import BookingModal from '../../components/BookingModal'; // Reusing logic but maybe in full page form later
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const Booking: React.FC = () => {
     const navigate = useNavigate();

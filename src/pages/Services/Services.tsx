@@ -1,8 +1,11 @@
 import React from 'react';
 import { FaCamera, FaVideo, FaUtensils, FaWifi, FaCar, FaUserShield, FaTshirt, FaPaintBrush, FaShuttleVan, FaArrowRight, FaArrowDown } from 'react-icons/fa';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 
 const Services: React.FC = () => {
+    const navigate = useNavigate();
+
     const services = [
         {
             icon: FaCamera,
@@ -83,7 +86,7 @@ const Services: React.FC = () => {
                             transition={{ delay: 0.2 }}
                             className="text-gray-400 max-w-md mb-8 lg:text-right leading-relaxed"
                         >
-                            There are many variations of services available, but the majority have suffered alteration in some form. We provide top-notch hospitality services tailored to your needs.
+                            We provide top-notch hospitality services tailored to your needs. From high-speed internet to exquisite dining, we ensure your stay is comfortable and memorable.
                         </motion.p>
 
                         <motion.button
@@ -91,6 +94,7 @@ const Services: React.FC = () => {
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ delay: 0.3 }}
                             className="btn-all-services"
+                            onClick={() => navigate('/contact')}
                         >
                             Contact For Services
                         </motion.button>
