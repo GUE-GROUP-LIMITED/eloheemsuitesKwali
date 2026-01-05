@@ -971,33 +971,291 @@ h6 {
 }
 
 /* Footer */
+/* Footer - Pulau Kapuk Style */
 .footer {
-    background-color: #050f0f;
+    background-color: #0f0f0f;
     color: #999;
-    padding: 60px 0 20px;
-    border-top: 1px solid #111;
+    padding: 0 0 20px;
+    border-top: none;
+    font-family: var(--font-sans);
 }
 
-.footer-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 40px;
-    margin-bottom: 40px;
+/* Footer CTA Section (Banner) */
+.footer-cta {
+    position: relative;
+    width: 100%;
+    height: 350px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 60px;
 }
 
-.footer-brand h3 {
+.footer-cta-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+}
+
+.footer-cta-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding-top: 200px;
+    /* Fade starts lower */
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, #0f0f0f 100%);
+    z-index: 1;
+}
+
+.footer-cta-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
     color: #fff;
+    padding-top: 50px;
+}
+
+.footer-cta-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 30px;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    font-family: var(--font-sans);
+}
+
+.btn-search-footer {
+    background: #fff;
+    color: #000;
+    padding: 15px 40px;
+    border-radius: 12px;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: transform 0.3s;
+}
+
+.btn-search-footer:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(255, 255, 255, 0.2);
+}
+
+/* Main Footer Grid */
+.footer-grid-5 {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr 1.5fr;
+    gap: 40px;
+    padding: 0 40px;
+    max-width: 1400px;
+    margin: 0 auto 60px;
+}
+
+/* Column 1: Brand & Apps */
+.footer-brand-col {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.brand-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.brand-icon {
+    width: 40px;
+    height: 40px;
+    /* Placeholder for the logo icon */
+    background: linear-gradient(135deg, #a855f7, #ec4899);
+    border-radius: 50%;
+}
+
+.brand-name {
     font-size: 1.5rem;
+    font-weight: 700;
+    color: #fff;
 }
 
-.footer-brand span {
-    color: var(--secondary-color);
+.brand-name span {
+    color: #c084fc;
+    /* Purple tint */
 }
 
-.social-links {
+.app-download-row {
     display: flex;
     gap: 15px;
-    margin-top: 20px;
+    align-items: center;
+}
+
+.qr-code-box {
+    width: 100px;
+    height: 100px;
+    background: #fff;
+    border-radius: 12px;
+    padding: 5px;
+}
+
+.qr-code-box img {
+    width: 100%;
+    height: 100%;
+}
+
+.store-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.btn-store {
+    background: #1f1f1f;
+    border: 1px solid #333;
+    border-radius: 8px;
+    padding: 8px 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.8rem;
+    width: 140px;
+    transition: background 0.3s;
+}
+
+.btn-store:hover {
+    background: #333;
+}
+
+.btn-store svg {
+    font-size: 1.2rem;
+}
+
+/* Link Columns */
+.footer-col-title {
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 25px;
+}
+
+.footer-links-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-links-list li {
+    margin-bottom: 15px;
+}
+
+.footer-links-list a {
+    color: #888;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s;
+}
+
+.footer-links-list a:hover {
+    color: #fff;
+}
+
+/* Contact Column */
+.contact-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+    color: #ccc;
+}
+
+.contact-row svg {
+    color: #fff;
+}
+
+.footer-socials {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.social-icon-circle {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    text-decoration: none;
+    transition: background 0.3s;
+}
+
+.social-icon-circle:hover {
+    background: var(--secondary-color);
+}
+
+/* Copyright Strip */
+.copyright-strip {
+    border-top: 1px solid #222;
+    padding: 30px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.75rem;
+    color: #555;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.copyright-links {
+    display: flex;
+    gap: 30px;
+}
+
+.copyright-links a {
+    color: #555;
+    text-decoration: none;
+}
+
+.copyright-links a:hover {
+    color: #888;
+}
+
+@media (max-width: 992px) {
+    .footer-grid-5 {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .footer-brand-col {
+        grid-column: span 2;
+    }
+}
+
+@media (max-width: 600px) {
+    .footer-grid-5 {
+        grid-template-columns: 1fr;
+        padding: 0 20px;
+    }
+
+    .footer-brand-col {
+        grid-column: span 1;
+    }
+
+    .copyright-strip {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
 }
 
 /* ========================
@@ -1026,7 +1284,7 @@ h6 {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url('https://codesnippet-741238344.imgix.net/eloheem/eloheem5.jpg');
+    background-image: url('https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -2763,4 +3021,80 @@ h6 {
     display: flex;
     gap: 15px;
     margin-top: 20px;
+}
+
+/* ========================
+   Shared Page Hero Styles
+======================== */
+.page-hero {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    color: #fff;
+    text-align: center;
+    background-color: #000;
+}
+
+.page-hero-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    /* Parallax */
+    z-index: 0;
+}
+
+.page-hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    /* consistent overlay */
+    z-index: 1;
+}
+
+.page-hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 0 20px;
+    max-width: 900px;
+}
+
+.page-hero-subtitle {
+    display: block;
+    font-size: 0.9rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--secondary-color);
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.page-hero-title {
+    font-size: 3.5rem;
+    font-family: var(--font-serif);
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+.page-hero-desc {
+    font-size: 1.2rem;
+    color: #e0e0e0;
+    font-weight: 300;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+    .page-hero-title {
+        font-size: 2.5rem;
+    }
 }

@@ -2,6 +2,7 @@ import React from 'react';
 import { FaCamera, FaVideo, FaUtensils, FaWifi, FaCar, FaUserShield, FaTshirt, FaPaintBrush, FaShuttleVan, FaArrowRight, FaArrowDown } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
+import PageHero from '../../components/PageHero';
 
 const Services: React.FC = () => {
     const navigate = useNavigate();
@@ -56,49 +57,14 @@ const Services: React.FC = () => {
 
     return (
         <div className="services-page-container">
+            <PageHero
+                title="Our Services"
+                subtitle="WHAT WE OFFER"
+                description="We provide top-notch hospitality services tailored to your needs. From high-speed internet to exquisite dining, we ensure your stay is comfortable and memorable."
+                backgroundImage="https://codesnippet-741238344.imgix.net/eloheem/eloheem4.jpg"
+            />
+
             <div className="container services-inner">
-
-                {/* Top Section */}
-                <div className="services-hero">
-                    <div className="services-hero-text">
-                        <motion.div
-                            initial={{ opacity: 0, x: -20 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            className="offer-tag"
-                        >
-                            <div className="tag-line"></div>
-                            <span>What We Offer</span>
-                        </motion.div>
-                        <motion.h1
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.1 }}
-                        >
-                            OUR<br />SERVICES
-                        </motion.h1>
-                    </div>
-
-                    <div className="services-hero-desc">
-                        <motion.p
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            transition={{ delay: 0.2 }}
-                        >
-                            We provide top-notch hospitality services tailored to your needs. From high-speed internet to exquisite dining, we ensure your stay is comfortable and memorable.
-                        </motion.p>
-
-                        <motion.button
-                            initial={{ opacity: 0, scale: 0.9 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            transition={{ delay: 0.3 }}
-                            className="btn-all-services"
-                            onClick={() => navigate('/contact')}
-                        >
-                            Contact For Services
-                        </motion.button>
-                    </div>
-                </div>
-
                 <div className="services-main-content">
                     {/* Sidebar Indicator */}
                     <div className="services-sidebar">
@@ -138,6 +104,18 @@ const Services: React.FC = () => {
                             </motion.div>
                         ))}
                     </div>
+                </div>
+
+                {/* CTA Buton */}
+                <div style={{ textAlign: 'center', marginTop: '60px' }}>
+                    <motion.button
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        className="btn-all-services"
+                        onClick={() => navigate('/contact')}
+                    >
+                        Contact For Services
+                    </motion.button>
                 </div>
 
             </div>

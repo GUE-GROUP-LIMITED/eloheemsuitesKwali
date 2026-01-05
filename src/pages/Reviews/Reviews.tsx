@@ -1,15 +1,17 @@
 import React from 'react';
 import ReviewsComponent from '../../components/Reviews';
+import PageHero from '../../components/PageHero';
 
 const Reviews: React.FC = () => {
     return (
-        <div className="pt-24 min-h-screen bg-[#f9f9f9]">
-            <div className="bg-[#0f1f1f] text-white py-20 text-center mb-10">
-                <h1 className="text-4xl md:text-5xl font-serif">Guest Reviews</h1>
-                <p className="opacity-70 mt-4">What our guests say about us</p>
-            </div>
+        <div style={{ minHeight: '100vh', backgroundColor: '#f9f9f9' }}>
+            <PageHero
+                title="Guest Reviews"
+                subtitle="TESTIMONIALS"
+                description="What our guests say about their stay with us."
+                backgroundImage="https://codesnippet-741238344.imgix.net/eloheem/_11A2439.JPG"
+            />
 
-            {/* We stick to the component but we can wrap it or just render it */}
             <div className="pb-20">
                 <ReviewsComponent />
             </div>
