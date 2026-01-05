@@ -11,11 +11,11 @@ const Hero: React.FC = () => {
                 className="hero-image"
             />
 
-            {/* Subtle Gradient Overlay for Text Readability at Top */}
-            <div className="hero-overlay-gradient"></div>
+            {/* Dark Overlay for Text Readability */}
+            <div className="hero-overlay"></div>
 
-            {/* Main Content - Centered Top */}
-            <div className="container hero-container-center-top">
+            {/* Main Content - Centered */}
+            <div className="container hero-container-center">
                 <div className="hero-text-center">
                     <motion.h1
                         className="hero-title-centered"
