@@ -1,9 +1,61 @@
-import React from 'react';
+import React, { useState } from 'react';
 import SectionHeading from './SectionHeading';
 import { motion } from 'framer-motion';
-import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt } from 'react-icons/fa';
+import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt, FaSpinner, FaCheck } from 'react-icons/fa';
+import { inquiriesApi } from '../lib/api';
 
 const Contact: React.FC = () => {
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        phone: '',
+        subject: '',
+        message: ''
+    });
+    const [loading, setLoading] = useState(false);
+    const [success, setSuccess] = useState(false);
+    const [error, setError] = useState('');
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+        setFormData({
+            ...formData,
+            [e.target.name]: e.target.value
+        });
+    };
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setLoading(true);
+        setError('');
+        setSuccess(false);
+
+        try {
+            const { error: submitError } = await inquiriesApi.submit({
+                name: formData.name,
+                email: formData.email,
+                phone: formData.phone || undefined,
+                subject: formData.subject || undefined,
+                message: formData.message,
+                inquiry_type: 'general'
+            });
+
+            if (submitError) {
+                setError('Failed to send message. Please try again.');
+                console.error('Submit error:', submitError);
+            } else {
+                setSuccess(true);
+                setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
+                // Reset success message after 5 seconds
+                setTimeout(() => setSuccess(false), 5000);
+            }
+        } catch (err) {
+            setError('An unexpected error occurred. Please try again.');
+            console.error('Error:', err);
+        } finally {
+            setLoading(false);
+        }
+    };
+
     return (
         <section id="contact" className="contact-section">
             <div className="container">
@@ -60,21 +112,100 @@ const Contact: React.FC = () => {
                         className="contact-form-card"
                     >
                         <h3 style={{ fontSize: '1.8rem', marginBottom: '20px', fontFamily: 'var(--font-serif)' }}>Send a Message</h3>
-                        <form action="https://formspree.io/f/your_formspree_id" method="POST">
-                            <div className="form-group">
-                                <label htmlFor="name">Name</label>
-                                <input type="text" id="name" name="name" required className="form-control" />
+
+                        {success && (
+                            <div className="form-success">
+                                <FaCheck /> Thank you! Your message has been sent successfully. We'll get back to you soon.
+                            </div>
+                        )}
+
+                        {error && (
+                            <div className="form-error">
+                                {error}
+                            </div>
+                        )}
+
+                        <form onSubmit={handleSubmit}>
+                            <div className="form-row-2">
+                                <div className="form-group">
+                                    <label htmlFor="name">Name *</label>
+                                    <input
+                                        type="text"
+                                        id="name"
+                                        name="name"
+                                        value={formData.name}
+                                        onChange={handleChange}
+                                        required
+                                        className="form-control"
+                                        placeholder="Your full name"
+                                    />
+                                </div>
+                                <div className="form-group">
+                                    <label htmlFor="email">Email *</label>
+                                    <input
+                                        type="email"
+                                        id="email"
+                                        name="email"
+                                        value={formData.email}
+                                        onChange={handleChange}
+                                        required
+                                        className="form-control"
+                                        placeholder="your@email.com"
+                                    />
+                                </div>
+                            </div>
+                            <div className="form-row-2">
+                                <div className="form-group">
+                                    <label htmlFor="phone">Phone</label>
+                                    <input
+                                        type="tel"
+                                        id="phone"
+                                        name="phone"
+                                        value={formData.phone}
+                                        onChange={handleChange}
+                                        className="form-control"
+                                        placeholder="+234 XXX XXX XXXX"
+                                    />
+                                </div>
+                                <div className="form-group">
+                                    <label htmlFor="subject">Subject</label>
+                                    <select
+                                        id="subject"
+                                        name="subject"
+                                        value={formData.subject}
+                                        onChange={handleChange}
+                                        className="form-control"
+                                    >
+                                        <option value="">Select a topic</option>
+                                        <option value="Room Booking Inquiry">Room Booking Inquiry</option>
+                                        <option value="Event Booking Inquiry">Event Booking Inquiry</option>
+                                        <option value="Pricing Question">Pricing Question</option>
+                                        <option value="Feedback">Feedback</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                </div>
                             </div>
                             <div className="form-group">
-                                <label htmlFor="email">Email</label>
-                                <input type="email" id="email" name="email" required className="form-control" />
+                                <label htmlFor="message">Message *</label>
+                                <textarea
+                                    id="message"
+                                    name="message"
+                                    rows={5}
+                                    value={formData.message}
+                                    onChange={handleChange}
+                                    required
+                                    className="form-control"
+                                    placeholder="How can we help you?"
+                                ></textarea>
                             </div>
-                            <div className="form-group">
-                                <label htmlFor="message">Message</label>
-                                <textarea id="message" name="message" rows={4} required className="form-control"></textarea>
-                            </div>
-                            <button type="submit" className="btn-submit">
-                                Send Message
+                            <button type="submit" className="btn-submit" disabled={loading}>
+                                {loading ? (
+                                    <>
+                                        <FaSpinner className="spin" /> Sending...
+                                    </>
+                                ) : (
+                                    'Send Message'
+                                )}
                             </button>
                         </form>
                     </motion.div>
@@ -85,3 +216,4 @@ const Contact: React.FC = () => {
 };
 
 export default Contact;
+

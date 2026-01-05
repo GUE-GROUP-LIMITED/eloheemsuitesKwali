@@ -37,9 +37,13 @@ const Navbar: React.FC = () => {
                     </ul>
 
                     {/* Logo Center */}
-                    <div className="nav-logo">
-                        <h1>ELOHEEM<span>SUITES</span></h1>
-                    </div>
+                    <NavLink to="/" className="nav-logo">
+                        <img
+                            src="https://codesnippet-741238344.imgix.net/eloheem/PHOTO-2025-03-18-14-28-32-removebg-preview.png"
+                            alt="Eloheem Suites"
+                            className="logo-img"
+                        />
+                    </NavLink>
 
                     {/* Right Menu (Desktop) */}
                     <ul className="nav-menu">
