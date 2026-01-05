@@ -1562,6 +1562,198 @@ h6 {
     padding-bottom: 50px;
 }
 
+/* Residence Categories Section */
+.residence-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.category-card {
+    background: #fff;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.category-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+}
+
+.arrow-icon-wrapper {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #f5f5f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    transition: background 0.3s;
+}
+
+.category-card:hover .arrow-icon-wrapper {
+    background: var(--secondary-color);
+}
+
+.category-card:hover .arrow-icon-wrapper svg {
+    color: #fff;
+}
+
+.category-img-wrapper {
+    height: 180px;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.category-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+    /* Inner radius if desired, or just inherits */
+    display: block;
+}
+
+/* Popular Places Section */
+.popular-places-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.place-card {
+    background: transparent;
+    border-radius: 0;
+    cursor: pointer;
+}
+
+.place-img-wrapper {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    height: 250px;
+    margin-bottom: 20px;
+}
+
+.place-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.place-card:hover .place-img-wrapper img {
+    transform: scale(1.05);
+}
+
+.badge-hotel {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    color: #8b5cf6;
+    /* Purple-ish */
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.badge-hotel::before {
+    content: '';
+    /* Could be icon */
+}
+
+.badge-video {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(5px);
+    color: #fff;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    display: flex;
+    align-items: center;
+}
+
+.place-content {
+    text-align: left;
+}
+
+.place-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 5px;
+    color: #1a1a1a;
+}
+
+.place-location {
+    font-size: 0.85rem;
+    color: #888;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.place-pricing {
+    margin-bottom: 15px;
+}
+
+.badge-discount {
+    background: #ef4444;
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 4px 8px;
+    border-radius: 6px;
+}
+
+.price-final {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #1a1a1a;
+}
+
+.place-features {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.feature-tag {
+    background: #ecfdf5;
+    /* Light green */
+    color: #059669;
+    /* Green text */
+    font-size: 0.7rem;
+    padding: 6px 12px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+}
+
+@media (max-width: 992px) {
+    .popular-places-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .popular-places-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
 .services-inner {
     padding-top: 120px;
     padding-bottom: 80px;
@@ -1570,6 +1762,86 @@ h6 {
     margin: 0 auto;
     padding-left: 20px;
     padding-right: 20px;
+}
+
+/* Amenities / Services New Layout Styles */
+.amenities-section {
+    padding: 80px 0;
+    background-color: #f8f9fa;
+}
+
+.residence-section {
+    margin-bottom: 80px;
+}
+
+.popular-section {
+    margin-bottom: 40px;
+}
+
+.section-title-left {
+    font-size: 2rem;
+    font-weight: 700;
+    font-family: var(--font-sans);
+    color: #1a1a1a;
+    margin-bottom: 1.5rem;
+    text-align: left;
+}
+
+.section-header-left {
+    text-align: left;
+    margin-bottom: 2rem;
+}
+
+.section-desc {
+    color: #666;
+    font-size: 1rem;
+    margin-top: -1rem;
+}
+
+.category-content {
+    padding: 24px 24px 10px 24px;
+}
+
+.category-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 10px;
+}
+
+.category-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 4px;
+}
+
+.category-count {
+    font-size: 0.85rem;
+    color: #888;
+}
+
+.price-start {
+    font-size: 0.75rem;
+    color: #999;
+    margin-bottom: 5px;
+}
+
+.old-price {
+    text-decoration: line-through;
+    color: #888;
+}
+
+.price-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.price-suffix {
+    font-size: 0.85rem;
+    font-weight: 400;
+    color: #888;
 }
 
 .services-hero {
