@@ -44,7 +44,11 @@ const AdminLogin: React.FC = () => {
                     transition={{ duration: 0.5 }}
                 >
                     <div className="login-header">
-                        <h1>Eloheem Suites</h1>
+                        <img
+                            src="https://codesnippet-741238344.imgix.net/eloheem/PHOTO-2025-03-18-14-28-32-removebg-preview.png"
+                            alt="Eloheem Suites"
+                            className="login-logo"
+                        />
                         <p>Admin Dashboard</p>
                     </div>
 

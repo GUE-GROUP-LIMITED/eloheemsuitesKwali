@@ -210,16 +210,21 @@ h6 {
 .nav-logo {
     flex: 0 0 auto;
     text-align: center;
+    text-decoration: none;
 }
 
-.nav-logo h1 {
-    color: #fff;
-    font-size: 1.5rem;
-    margin: 0;
+.nav-logo .logo-img {
+    height: 60px;
+    width: auto;
+    transition: transform 0.3s;
 }
 
-.nav-logo span {
-    color: var(--secondary-color);
+.nav-logo:hover .logo-img {
+    transform: scale(1.05);
+}
+
+.navbar.scrolled .nav-logo .logo-img {
+    height: 50px;
 }
 
 .nav-menu {
@@ -4941,11 +4946,10 @@ h6 {
     margin-bottom: 35px;
 }
 
-.login-header h1 {
-    font-size: 1.8rem;
-    font-family: var(--font-serif);
-    color: var(--primary-color);
-    margin-bottom: 5px;
+.login-logo {
+    height: 80px;
+    width: auto;
+    margin-bottom: 10px;
 }
 
 .login-header p {
@@ -5084,12 +5088,16 @@ h6 {
 .sidebar-header {
     padding: 25px 20px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    position: relative;
 }
 
-.sidebar-header h2 {
-    font-size: 1.4rem;
-    font-family: var(--font-serif);
-    color: var(--secondary-color);
+.sidebar-logo {
+    height: 70px;
+    width: auto;
 }
 
 .sidebar-header span {
@@ -5685,5 +5693,488 @@ h6 {
 
     .activity-cards {
         grid-template-columns: 1fr;
+    }
+}
+
+/* ========================
+   Admin Rooms Page Styles
+======================== */
+
+.btn-add-new {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background: var(--primary-color);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.btn-add-new:hover {
+    background: #0d3535;
+}
+
+.rooms-admin-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+.room-admin-card {
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s;
+}
+
+.room-admin-card:hover {
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.room-admin-card.unavailable {
+    opacity: 0.7;
+}
+
+.room-admin-image {
+    position: relative;
+    height: 180px;
+    overflow: hidden;
+}
+
+.room-admin-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.featured-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    padding: 5px 12px;
+    background: var(--secondary-color);
+    color: #000;
+    font-size: 0.7rem;
+    font-weight: 700;
+    border-radius: 20px;
+    text-transform: uppercase;
+}
+
+.unavailable-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.room-admin-body {
+    padding: 20px;
+}
+
+.room-admin-body h3 {
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+    color: var(--text-dark);
+}
+
+.room-type {
+    font-size: 0.75rem;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.room-price {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin: 10px 0 5px;
+}
+
+.room-capacity {
+    font-size: 0.85rem;
+    color: #666;
+}
+
+.room-admin-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+}
+
+.btn-icon {
+    width: 36px;
+    height: 36px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    transition: all 0.3s;
+}
+
+.btn-icon.edit {
+    background: #e3f2fd;
+    color: #1565c0;
+}
+
+.btn-icon.hide,
+.btn-icon.show {
+    background: #fff3e0;
+    color: #ef6c00;
+}
+
+.btn-icon.delete {
+    background: #ffebee;
+    color: #c62828;
+}
+
+.btn-icon:hover {
+    transform: scale(1.1);
+}
+
+/* Admin Modal */
+.admin-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    padding: 20px;
+}
+
+.admin-modal {
+    background: #fff;
+    border-radius: 16px;
+    width: 100%;
+    max-width: 700px;
+    max-height: 90vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 25px;
+    border-bottom: 1px solid #eee;
+}
+
+.modal-header h2 {
+    font-size: 1.3rem;
+    color: var(--text-dark);
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    color: #888;
+    cursor: pointer;
+}
+
+.modal-body {
+    padding: 25px;
+    overflow-y: auto;
+    flex: 1;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.modal-body .form-group {
+    margin-bottom: 15px;
+}
+
+.modal-body .form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #555;
+}
+
+.modal-body .form-group input,
+.modal-body .form-group select,
+.modal-body .form-group textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #eee;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    transition: all 0.3s;
+}
+
+.modal-body .form-group input:focus,
+.modal-body .form-group select:focus,
+.modal-body .form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+.form-row.checkboxes {
+    display: flex;
+    gap: 25px;
+    margin-top: 10px;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+    color: #555;
+    cursor: pointer;
+}
+
+.checkbox-label input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    padding: 20px 25px;
+    border-top: 1px solid #eee;
+    background: #f8f9fa;
+}
+
+.btn-cancel {
+    padding: 12px 25px;
+    background: #f0f0f0;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.btn-cancel:hover {
+    background: #e0e0e0;
+}
+
+.btn-save {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 25px;
+    background: var(--primary-color);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.btn-save:hover {
+    background: #0d3535;
+}
+
+/* ========================
+   Admin Reviews Page Styles
+======================== */
+
+.reviews-filter {
+    margin-bottom: 25px;
+}
+
+.filter-tab .badge {
+    margin-left: 8px;
+    padding: 2px 8px;
+    background: #c62828;
+    color: #fff;
+    border-radius: 10px;
+    font-size: 0.7rem;
+}
+
+.reviews-admin-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 20px;
+}
+
+.review-admin-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    border-left: 4px solid #4caf50;
+}
+
+.review-admin-card.pending {
+    border-left-color: #ff9800;
+    background: #fffef5;
+}
+
+.review-admin-card.featured {
+    border-left-color: var(--secondary-color);
+}
+
+.review-admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 15px;
+}
+
+.reviewer-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.reviewer-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.reviewer-info h4 {
+    font-size: 1rem;
+    margin-bottom: 2px;
+}
+
+.reviewer-location {
+    font-size: 0.8rem;
+    color: #888;
+}
+
+.review-rating {
+    display: flex;
+    gap: 2px;
+}
+
+.star-filled {
+    color: var(--secondary-color);
+}
+
+.star-empty {
+    color: #ddd;
+}
+
+.review-admin-body h3 {
+    font-size: 1rem;
+    margin-bottom: 8px;
+    color: var(--text-dark);
+}
+
+.review-admin-body p {
+    font-size: 0.9rem;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
+
+.review-date {
+    font-size: 0.8rem;
+    color: #aaa;
+}
+
+.review-admin-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+}
+
+.review-status {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.review-status .status-badge {
+    padding: 4px 10px;
+    border-radius: 15px;
+    font-size: 0.7rem;
+    font-weight: 600;
+}
+
+.review-status .status-badge.pending {
+    background: #fff3e0;
+    color: #ef6c00;
+}
+
+.review-status .status-badge.approved {
+    background: #e8f5e9;
+    color: #2e7d32;
+}
+
+.review-status .status-badge.featured {
+    background: #fff8e1;
+    color: #f57c00;
+}
+
+.review-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.btn-icon.approve {
+    background: #e8f5e9;
+    color: #2e7d32;
+}
+
+.btn-icon.feature {
+    background: #f5f5f5;
+    color: #888;
+}
+
+.btn-icon.feature.active {
+    background: #fff8e1;
+    color: var(--secondary-color);
+}
+
+@media (max-width: 768px) {
+
+    .rooms-admin-grid,
+    .reviews-admin-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .admin-modal {
+        max-height: 100vh;
+        border-radius: 0;
     }
 }

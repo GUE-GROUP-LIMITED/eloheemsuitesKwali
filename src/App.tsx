@@ -15,6 +15,9 @@ import NotFound from './pages/NotFound/NotFound';
 import AdminLogin from './pages/Admin/AdminLogin';
 import AdminDashboard from './pages/Admin/AdminDashboard';
 import AdminBookings from './pages/Admin/AdminBookings';
+import AdminRooms from './pages/Admin/AdminRooms';
+import AdminReviews from './pages/Admin/AdminReviews';
+import AdminInquiries from './pages/Admin/AdminInquiries';
 import { Routes, Route, useLocation } from 'react-router-dom';
 
 // Layout wrapper for public pages (with Navbar and Footer)
@@ -49,9 +52,9 @@ const App: React.FC = () => {
         <Route path="/admin/login" element={<AdminLogin />} />
         <Route path="/admin/dashboard" element={<AdminDashboard />} />
         <Route path="/admin/bookings" element={<AdminBookings />} />
-        <Route path="/admin/rooms" element={<AdminDashboard />} />
-        <Route path="/admin/reviews" element={<AdminDashboard />} />
-        <Route path="/admin/inquiries" element={<AdminDashboard />} />
+        <Route path="/admin/rooms" element={<AdminRooms />} />
+        <Route path="/admin/reviews" element={<AdminReviews />} />
+        <Route path="/admin/inquiries" element={<AdminInquiries />} />
 
         {/* 404 */}
         <Route path="*" element={<PublicLayout><NotFound /></PublicLayout>} />
