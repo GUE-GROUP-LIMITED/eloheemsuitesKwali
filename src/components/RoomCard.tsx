@@ -2,12 +2,16 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import type { Room } from '../data/rooms';
 
+import { useNavigate } from 'react-router-dom';
+
 interface RoomCardProps {
     room: Room;
     onBook: (room: Room) => void;
 }
 
 const RoomCard: React.FC<RoomCardProps> = ({ room, onBook }) => {
+    const navigate = useNavigate();
+
     return (
         <motion.div
             className="room-card"
@@ -26,7 +30,10 @@ const RoomCard: React.FC<RoomCardProps> = ({ room, onBook }) => {
             <p className="room-card-desc line-clamp-2">{room.description}</p>
 
             <div className="room-card-buttons">
-                <button className="btn-more-info">
+                <button
+                    className="btn-more-info"
+                    onClick={() => navigate(`/rooms/${room.id}`)}
+                >
                     More Info
                 </button>
                 <button

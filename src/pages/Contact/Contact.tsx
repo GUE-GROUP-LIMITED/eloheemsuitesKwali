@@ -1,15 +1,20 @@
 import React from 'react';
-import ContactSection from '../../components/Contact'; // Reuse the existing detailed contact section
+import PageHero from '../../components/PageHero';
+import ContactSection from '../../components/Contact';
 
 const ContactPage: React.FC = () => {
     return (
-        <div className="pt-24 min-h-screen">
-            <div className="bg-[#0f1f1f] text-white py-20 text-center">
-                <h1 className="text-4xl md:text-5xl font-serif">Contact Us</h1>
-                <p className="opacity-70 mt-4">We'd Love to Hear From You</p>
+        <div style={{ minHeight: '100vh', backgroundColor: '#f9f9f9' }}>
+            <PageHero
+                title="Contact Us"
+                subtitle="GET IN TOUCH"
+                description="WE'D LOVE TO HEAR FROM YOU"
+                backgroundImage="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80"
+            />
+
+            <div style={{ paddingBottom: '60px' }}>
+                <ContactSection />
             </div>
-            {/* The reusable Contact component already has padding and layout we need */}
-            <ContactSection />
         </div>
     );
 };

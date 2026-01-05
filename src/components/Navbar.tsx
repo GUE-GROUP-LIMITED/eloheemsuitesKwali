@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
-import { FaPhoneAlt, FaEnvelope, FaBars, FaTimes } from 'react-icons/fa';
+import { FaBars, FaTimes } from 'react-icons/fa';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const Navbar: React.FC = () => {
@@ -21,12 +21,6 @@ const Navbar: React.FC = () => {
 
     return (
         <>
-            {/* Top Bar (Contact Info) */}
-            <div className="top-bar fixed w-full z-[1001]">
-                <span><FaPhoneAlt size={12} /> 07061266542</span>
-                <span><FaEnvelope size={12} /> info@eloheemsuites.com</span>
-            </div>
-
             <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
                 <div className="nav-container">
 

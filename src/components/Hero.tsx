@@ -1,97 +1,116 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { FaMapMarkerAlt } from 'react-icons/fa';
 
-const heroImages = [
-    "https://codesnippet-741238344.imgix.net/eloheem/eloheem.jpg",
-    "https://codesnippet-741238344.imgix.net/eloheem/eloheem4.jpg",
-    "https://codesnippet-741238344.imgix.net/eloheem/_11A2348.JPG"
+const cardData = [
+    { image: "https://codesnippet-741238344.imgix.net/eloheem/_11A2348.JPG", title: "Presidential Suite" },
+    { image: "https://codesnippet-741238344.imgix.net/eloheem/eloheem4.jpg", title: "Executive Suite" },
+    { image: "https://codesnippet-741238344.imgix.net/eloheem/eloheem3.jpg", title: "Standard Room" }
 ];
 
 const Hero: React.FC = () => {
-    const [currentImage, setCurrentImage] = useState(0);
+    const [currentIndex, setCurrentIndex] = useState(0);
 
     useEffect(() => {
         const timer = setInterval(() => {
-            setCurrentImage((prev) => (prev + 1) % heroImages.length);
-        }, 6000);
+            setCurrentIndex((prev) => (prev + 1) % cardData.length);
+        }, 4000);
         return () => clearInterval(timer);
     }, []);
 
     return (
         <section className="hero">
-            {/* Background Slideshow */}
-            <AnimatePresence mode='wait'>
-                <motion.img
-                    key={currentImage}
-                    src={heroImages[currentImage]}
-                    alt="Hero Background"
-                    className="hero-image"
-                    initial={{ opacity: 0, scale: 1.1 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 2 }}
-                />
-            </AnimatePresence>
+            {/* Background Image */}
+            <img
+                src="https://codesnippet-741238344.imgix.net/eloheem/eloheem.jpg"
+                alt="Eloheem Suites Exterior"
+                className="hero-image"
+            />
 
-            <div className="hero-overlay"></div>
+            {/* Gradient Overlay (Dark Teal Left -> Transparent Right) */}
+            <div className="hero-overlay-split"></div>
 
-            {/* Main Content */}
-            <div className="hero-content">
-                <motion.p
-                    className="hero-subtitle"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.5 }}
-                >
-                    EXPERIENCE
-                </motion.p>
-                <motion.h1
-                    className="hero-title"
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.8 }}
-                >
-                    A VACATION WITH CLASS
-                </motion.h1>
-                <motion.p
-                    className="hero-quote"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 1.1 }}
-                >
-                    You know you deserve it!
-                </motion.p>
+            {/* Main Content Container */}
+            <div className="container hero-container-split">
+
+                {/* Left Column: Text & CTA */}
+                <div className="hero-column-left">
+                    <motion.div
+                        initial={{ opacity: 0, x: -30 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.8 }}
+                    >
+                        <h4 className="hero-brand-small">ELOHEEM'S HOTEL & SUITES</h4>
+                        <h1 className="hero-title-serif">
+                            Eloheem's A <br />
+                            Sanctuary Of <br />
+                            Elegance And <br />
+                            Comfort.
+                        </h1>
+                        <p className="hero-desc-small">
+                            Indulge in the pinnacle of luxury. Eloheem's Hotel offers an exquisite escape
+                            with meticulously designed rooms, world-class amenities, and
+                            unparalleled service in the heart of Kwali.
+                        </p>
+                        <button className="btn-book-hero">Book Now</button>
+                    </motion.div>
+                </div>
+
+                {/* Right Column: Featured Room Card with Slider */}
+                <div className="hero-column-right">
+                    <motion.div
+                        className="hero-room-card"
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.8, delay: 0.2 }}
+                    >
+                        <div className="hero-card-image-wrapper relative overflow-hidden">
+                            <AnimatePresence mode='wait'>
+                                <motion.img
+                                    key={currentIndex}
+                                    src={cardData[currentIndex].image}
+                                    alt={cardData[currentIndex].title}
+                                    className="hero-card-image absolute inset-0 w-full h-full object-cover"
+                                    initial={{ opacity: 0, x: 50 }}
+                                    animate={{ opacity: 1, x: 0 }}
+                                    exit={{ opacity: 0, x: -50 }}
+                                    transition={{ duration: 0.5 }}
+                                />
+                            </AnimatePresence>
+                        </div>
+                        <div className="hero-card-details">
+                            <div className="hero-card-header">
+                                <AnimatePresence mode='wait'>
+                                    <motion.h3
+                                        key={currentIndex}
+                                        initial={{ opacity: 0, y: 10 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        exit={{ opacity: 0, y: -10 }}
+                                        transition={{ duration: 0.3 }}
+                                    >
+                                        {cardData[currentIndex].title}
+                                    </motion.h3>
+                                </AnimatePresence>
+                            </div>
+                            <div className="hero-card-location">
+                                <FaMapMarkerAlt /> Kwali, Abuja
+                            </div>
+                            {/* Dots for carousel visual */}
+                            <div className="hero-card-dots">
+                                {cardData.map((_, index) => (
+                                    <span
+                                        key={index}
+                                        className={`dot ${index === currentIndex ? 'active' : ''}`}
+                                        onClick={() => setCurrentIndex(index)}
+                                    ></span>
+                                ))}
+                            </div>
+                        </div>
+                    </motion.div>
+                </div>
             </div>
 
-            {/* Booking Bar */}
-            <motion.div
-                className="booking-bar"
-                initial={{ y: 100, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 1.5, type: 'spring', stiffness: 50 }}
-            >
-                <div className="booking-item">
-                    <label>Check Availability:</label>
-                    {/* Purely decorative label context */}
-                </div>
-                <div className="booking-item">
-                    <label>Check In</label>
-                    <input type="date" className="booking-input" />
-                </div>
-                <div className="booking-item">
-                    <label>Check Out</label>
-                    <input type="date" className="booking-input" />
-                </div>
-                <div className="booking-item">
-                    <label>Persons</label>
-                    <select className="booking-input">
-                        <option>1 Person</option>
-                        <option>2 Persons</option>
-                        <option>Family</option>
-                    </select>
-                </div>
-                <button className="booking-btn">Check</button>
-            </motion.div>
+
         </section>
     );
 };
