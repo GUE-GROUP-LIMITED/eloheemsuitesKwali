@@ -2196,6 +2196,207 @@ h6 {
     color: #888;
 }
 
+/* ========================
+   About Page Styles (Eyah's Style)
+======================== */
+.about-page {
+    min-height: 100vh;
+    background-color: #fff;
+    font-family: var(--font-sans);
+    padding-bottom: 0;
+}
+
+/* Story Section */
+.story-section {
+    padding: 100px 0;
+    overflow: hidden;
+}
+
+.story-inner {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+}
+
+.story-image-col {
+    flex: 1;
+}
+
+.story-img-wrapper {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.story-img-wrapper img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.7s ease;
+}
+
+.story-img-wrapper:hover img {
+    transform: scale(1.05);
+}
+
+.story-text-col {
+    flex: 1;
+}
+
+.story-pretitle {
+    display: block;
+    color: #c4a661;
+    /* Gold */
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+.story-title {
+    font-size: 3rem;
+    font-family: var(--font-serif);
+    color: #1a1a1a;
+    line-height: 1.2;
+    margin-bottom: 30px;
+}
+
+.story-desc {
+    color: #666;
+    font-size: 1.05rem;
+    line-height: 1.7;
+}
+
+.story-desc p {
+    margin-bottom: 20px;
+}
+
+/* Values Section */
+.values-section {
+    background-color: #FAF9F5;
+    /* Beige */
+    padding: 100px 0;
+}
+
+.values-header {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 60px;
+}
+
+.values-pretitle {
+    display: block;
+    color: #c4a661;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+}
+
+.values-title {
+    font-size: 3rem;
+    font-family: var(--font-serif);
+    color: #1a1a1a;
+    margin-bottom: 20px;
+}
+
+.values-subtitle {
+    color: #666;
+    font-size: 1rem;
+}
+
+.values-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+}
+
+.value-card {
+    background: #fff;
+    padding: 40px 30px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.03);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.value-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
+}
+
+.value-icon {
+    width: 50px;
+    height: 50px;
+    margin: 0 auto 20px;
+    color: #c4a661;
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.value-card h3 {
+    font-size: 1.25rem;
+    font-family: var(--font-serif);
+    color: #1a1a1a;
+    margin-bottom: 15px;
+}
+
+.value-card p {
+    font-size: 0.9rem;
+    color: #666;
+    line-height: 1.6;
+}
+
+/* About Footer */
+.about-footer {
+    padding: 100px 0;
+    background: #fff;
+    text-align: center;
+}
+
+.about-footer h2 {
+    font-size: 3rem;
+    font-family: var(--font-serif);
+    color: #1a1a1a;
+}
+
+.signature-line {
+    width: 60px;
+    height: 3px;
+    background: #059669;
+    margin: 30px auto 0;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .story-inner {
+        flex-direction: column;
+        gap: 40px;
+    }
+
+    .values-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .story-title,
+    .values-title,
+    .about-footer h2 {
+        font-size: 2rem;
+    }
+
+    .values-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
 .services-hero {
     display: flex;
     flex-direction: row;
