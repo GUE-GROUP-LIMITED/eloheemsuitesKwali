@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaCamera, FaVideo, FaUtensils, FaWifi, FaCar, FaUserShield, FaTshirt, FaPaintBrush, FaShuttleVan, FaArrowRight, FaArrowDown } from 'react-icons/fa';
+import { FaCamera, FaVideo, FaUtensils, FaWifi, FaCar, FaUserShield, FaTshirt, FaPaintBrush, FaShuttleVan, FaArrowRight } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import PageHero from '../../components/PageHero';
@@ -10,115 +10,128 @@ const Services: React.FC = () => {
     const services = [
         {
             icon: FaCamera,
-            title: "PHOTOGRAPHY",
+            title: "Photography",
             description: "Capture your precious moments with our professional photography services available on request.",
+            category: "Media"
         },
         {
             icon: FaVideo,
-            title: "PROJECTOR RENTAL",
+            title: "Projector Rental",
             description: "High-definition projectors for your business meetings, seminars, and movie nights.",
+            category: "Equipment"
         },
         {
             icon: FaUtensils,
-            title: "CATERING",
-            description: "Exquisite local and international cuisine prepared by our top chefs for your events.",
+            title: "Fine Dining",
+            description: "Exquisite local and international cuisine prepared by our award-winning chefs.",
+            category: "Dining"
         },
         {
             icon: FaWifi,
-            title: "HIGH-SPEED WIFI",
-            description: "Stay connected with our complimentary 24/7 high-speed internet access.",
+            title: "High-Speed WiFi",
+            description: "Stay connected with our complimentary 24/7 fiber-optic internet access.",
+            category: "Connectivity"
         },
         {
             icon: FaCar,
-            title: "AMPLE PARKING",
-            description: "Secure and spacious parking space for all our guests and event attendees.",
+            title: "Secure Parking",
+            description: "Spacious and well-lit parking space with 24/7 security for all guests.",
+            category: "Facilities"
         },
         {
             icon: FaUserShield,
-            title: "24/7 SECURITY",
-            description: "Your safety is our priority with round-the-clock security personnel and surveillance.",
+            title: "24/7 Security",
+            description: "Your safety is our priority with round-the-clock security and CCTV surveillance.",
+            category: "Safety"
         },
         {
             icon: FaTshirt,
-            title: "LAUNDRY SERVICE",
+            title: "Laundry Service",
             description: "Professional laundry and dry cleaning services to keep you looking your best.",
+            category: "Housekeeping"
         },
         {
             icon: FaPaintBrush,
-            title: "EVENT DECOR",
+            title: "Event Decoration",
             description: "Transform our halls into your dream venue with our expert decoration partners.",
+            category: "Events"
         },
         {
             icon: FaShuttleVan,
-            title: "AIRPORT PICKUP",
-            description: "Convenient and safe transportation to and from the airport on request.",
+            title: "Airport Shuttle",
+            description: "Convenient and safe transportation to and from the airport upon request.",
+            category: "Transport"
         }
     ];
 
     return (
-        <div className="services-page-container">
+        <div className="services-page">
             <PageHero
                 title="Our Services"
                 subtitle="WHAT WE OFFER"
-                description="We provide top-notch hospitality services tailored to your needs. From high-speed internet to exquisite dining, we ensure your stay is comfortable and memorable."
+                description="World-class hospitality services tailored to exceed your expectations"
                 backgroundImage="https://codesnippet-741238344.imgix.net/eloheem/eloheem4.jpg"
             />
 
-            <div className="container services-inner">
-                <div className="services-main-content">
-                    {/* Sidebar Indicator */}
-                    <div className="services-sidebar">
-                        <span className="scrolldown-text">SCROLL DOWN</span>
-                        <div className="scroll-line"></div>
-                        <div className="scroll-circle">
-                            <FaArrowDown size={12} />
-                        </div>
+            {/* Services Grid Section */}
+            <section className="services-grid-section">
+                <div className="container">
+                    <div className="services-intro">
+                        <span className="section-label">Premium Services</span>
+                        <h2 className="services-section-title">Everything You Need</h2>
+                        <p className="services-section-desc">
+                            From the moment you arrive until your departure, our dedicated team ensures every aspect of your stay is exceptional.
+                        </p>
                     </div>
 
-                    {/* Services Grid */}
                     <div className="services-grid">
                         {services.map((service, index) => (
                             <motion.div
                                 key={index}
-                                initial={{ opacity: 0, y: 30 }}
+                                className="service-card"
+                                initial={{ opacity: 0, y: 40 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
-                                transition={{ delay: index * 0.05 }}
-                                className="service-card-new group"
+                                transition={{ delay: index * 0.08, duration: 0.5 }}
                             >
-                                <div className="service-icon-new">
-                                    <service.icon />
+                                <div className="service-card-inner">
+                                    <span className="service-category">{service.category}</span>
+                                    <div className="service-icon">
+                                        <service.icon />
+                                    </div>
+                                    <h3 className="service-title">{service.title}</h3>
+                                    <p className="service-description">{service.description}</p>
+                                    <div className="service-hover-line"></div>
                                 </div>
-                                <h3 className="service-title-new">{service.title}</h3>
-                                <p className="service-desc-new">
-                                    {service.description}
-                                </p>
-
-                                <div className="service-readmore">
-                                    <span>READ MORE</span>
-                                    <FaArrowRight className="text-xs transition-transform group-hover:translate-x-1" />
-                                </div>
-
-                                {/* Bottom Border Highlight */}
-                                <div className="service-highlight"></div>
                             </motion.div>
                         ))}
                     </div>
                 </div>
+            </section>
 
-                {/* CTA Buton */}
-                <div style={{ textAlign: 'center', marginTop: '60px' }}>
-                    <motion.button
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        className="btn-all-services"
-                        onClick={() => navigate('/contact')}
+            {/* CTA Section */}
+            <section className="services-cta-section">
+                <div className="container">
+                    <motion.div
+                        className="services-cta-content"
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6 }}
                     >
-                        Contact For Services
-                    </motion.button>
+                        <h2>Need a Custom Service?</h2>
+                        <p>Our concierge team is ready to accommodate any special requests to make your stay perfect.</p>
+                        <div className="cta-buttons">
+                            <button className="btn-cta-primary" onClick={() => navigate('/contact')}>
+                                Contact Us <FaArrowRight />
+                            </button>
+                            <button className="btn-cta-secondary" onClick={() => navigate('/booking')}>
+                                Book Your Stay
+                            </button>
+                        </div>
+                    </motion.div>
                 </div>
-
-            </div>
+            </section>
         </div>
     );
 };
