@@ -110,18 +110,7 @@ const Hero: React.FC = () => {
                 </div>
             </div>
 
-            {/* Scroll Indicator */}
-            <motion.div
-                className="hero-scroll-indicator"
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1.5, repeat: Infinity, repeatType: 'reverse', duration: 1.5 }}
-            >
-                <span>Scroll Down</span>
-                <div className="mouse-icon">
-                    <div className="wheel"></div>
-                </div>
-            </motion.div>
+
         </section>
     );
 };
