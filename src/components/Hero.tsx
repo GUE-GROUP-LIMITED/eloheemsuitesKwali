@@ -1,8 +1,23 @@
 import React, { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
-import { FaMapMarkerAlt, FaMouse } from 'react-icons/fa';
+import { motion, AnimatePresence } from 'framer-motion';
+import { FaMapMarkerAlt } from 'react-icons/fa';
+
+const cardImages = [
+    "https://codesnippet-741238344.imgix.net/eloheem/_11A2348.JPG",
+    "https://codesnippet-741238344.imgix.net/eloheem/eloheem4.jpg",
+    "https://codesnippet-741238344.imgix.net/eloheem/eloheem3.jpg"
+];
 
 const Hero: React.FC = () => {
+    const [currentCardImage, setCurrentCardImage] = useState(0);
+
+    useEffect(() => {
+        const timer = setInterval(() => {
+            setCurrentCardImage((prev) => (prev + 1) % cardImages.length);
+        }, 4000);
+        return () => clearInterval(timer);
+    }, []);
+
     return (
         <section className="hero">
             {/* Background Image */}
@@ -41,7 +56,7 @@ const Hero: React.FC = () => {
                     </motion.div>
                 </div>
 
-                {/* Right Column: Featured Room Card */}
+                {/* Right Column: Featured Room Card with Slider */}
                 <div className="hero-column-right">
                     <motion.div
                         className="hero-room-card"
@@ -49,12 +64,19 @@ const Hero: React.FC = () => {
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 0.8, delay: 0.2 }}
                     >
-                        <div className="hero-card-image-wrapper">
-                            <img
-                                src="https://codesnippet-741238344.imgix.net/eloheem/_11A2348.JPG"
-                                alt="Presidential Suite"
-                                className="hero-card-image"
-                            />
+                        <div className="hero-card-image-wrapper relative overflow-hidden">
+                            <AnimatePresence mode='wait'>
+                                <motion.img
+                                    key={currentCardImage}
+                                    src={cardImages[currentCardImage]}
+                                    alt="Presidential Suite"
+                                    className="hero-card-image absolute inset-0 w-full h-full object-cover"
+                                    initial={{ opacity: 0, x: 50 }}
+                                    animate={{ opacity: 1, x: 0 }}
+                                    exit={{ opacity: 0, x: -50 }}
+                                    transition={{ duration: 0.5 }}
+                                />
+                            </AnimatePresence>
                         </div>
                         <div className="hero-card-details">
                             <div className="hero-card-header">
@@ -68,9 +90,13 @@ const Hero: React.FC = () => {
                             </div>
                             {/* Dots for carousel visual */}
                             <div className="hero-card-dots">
-                                <span className="dot"></span>
-                                <span className="dot"></span>
-                                <span className="dot active"></span>
+                                {cardImages.map((_, index) => (
+                                    <span
+                                        key={index}
+                                        className={`dot ${index === currentCardImage ? 'active' : ''}`}
+                                        onClick={() => setCurrentCardImage(index)}
+                                    ></span>
+                                ))}
                             </div>
                         </div>
                     </motion.div>
