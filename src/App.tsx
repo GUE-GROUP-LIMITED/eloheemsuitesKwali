@@ -12,28 +12,53 @@ import Footer from './components/Footer';
 import Amenities from './pages/Amenities/Amenities';
 import Booking from './pages/Booking/Booking';
 import NotFound from './pages/NotFound/NotFound';
-import { Routes, Route } from 'react-router-dom';
+import AdminLogin from './pages/Admin/AdminLogin';
+import AdminDashboard from './pages/Admin/AdminDashboard';
+import AdminBookings from './pages/Admin/AdminBookings';
+import { Routes, Route, useLocation } from 'react-router-dom';
+
+// Layout wrapper for public pages (with Navbar and Footer)
+const PublicLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => (
+  <>
+    <Navbar />
+    {children}
+    <Footer />
+  </>
+);
 
 const App: React.FC = () => {
+  // useLocation is available for future use if needed
+  useLocation();
+
   return (
     <div className="app-container">
-      <Navbar />
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/rooms" element={<RoomsPage />} />
-        <Route path="/rooms/:id" element={<RoomDetails />} />
-        <Route path="/services" element={<Services />} />
-        <Route path="/amenities" element={<Amenities />} />
-        <Route path="/gallery" element={<Gallery />} />
-        <Route path="/reviews" element={<ReviewsPage />} />
-        <Route path="/contact" element={<ContactPage />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/booking" element={<Booking />} />
-        <Route path="*" element={<NotFound />} />
+        {/* Public Routes */}
+        <Route path="/" element={<PublicLayout><Home /></PublicLayout>} />
+        <Route path="/rooms" element={<PublicLayout><RoomsPage /></PublicLayout>} />
+        <Route path="/rooms/:id" element={<PublicLayout><RoomDetails /></PublicLayout>} />
+        <Route path="/services" element={<PublicLayout><Services /></PublicLayout>} />
+        <Route path="/amenities" element={<PublicLayout><Amenities /></PublicLayout>} />
+        <Route path="/gallery" element={<PublicLayout><Gallery /></PublicLayout>} />
+        <Route path="/reviews" element={<PublicLayout><ReviewsPage /></PublicLayout>} />
+        <Route path="/contact" element={<PublicLayout><ContactPage /></PublicLayout>} />
+        <Route path="/about" element={<PublicLayout><About /></PublicLayout>} />
+        <Route path="/booking" element={<PublicLayout><Booking /></PublicLayout>} />
+
+        {/* Admin Routes (no Navbar/Footer) */}
+        <Route path="/admin/login" element={<AdminLogin />} />
+        <Route path="/admin/dashboard" element={<AdminDashboard />} />
+        <Route path="/admin/bookings" element={<AdminBookings />} />
+        <Route path="/admin/rooms" element={<AdminDashboard />} />
+        <Route path="/admin/reviews" element={<AdminDashboard />} />
+        <Route path="/admin/inquiries" element={<AdminDashboard />} />
+
+        {/* 404 */}
+        <Route path="*" element={<PublicLayout><NotFound /></PublicLayout>} />
       </Routes>
-      <Footer />
     </div>
   );
 };
 
 export default App;
+
