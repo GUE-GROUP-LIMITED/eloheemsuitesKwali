@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom'; // No useLocation/Link needed yet?
+import { useParams, useNavigate } from 'react-router-dom';
 import { rooms } from '../../data/rooms';
 import { motion } from 'framer-motion';
 import { FaWifi, FaCoffee, FaTv, FaBath, FaSnowflake, FaCheck } from 'react-icons/fa';
@@ -18,7 +18,7 @@ const RoomDetails: React.FC = () => {
             setRoom(found);
             setActiveImage(0);
         } else {
-            navigate('/rooms'); // Redirect if not found
+            navigate('/rooms');
         }
     }, [id, navigate]);
 
@@ -33,36 +33,36 @@ const RoomDetails: React.FC = () => {
     ];
 
     return (
-        <div className="pt-24 min-h-screen bg-[#f3f4f6]">
+        <div className="room-details-page">
             {/* Hero Image Section */}
-            <div className="h-[50vh] md:h-[60vh] relative overflow-hidden bg-black">
+            <div className="room-hero">
                 <img
                     src={room.images[activeImage]}
                     alt={room.name}
-                    className="w-full h-full object-cover opacity-80"
+                    className="room-hero-img"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent flex items-end p-10">
-                    <div className="container mx-auto">
+                <div className="room-hero-overlay">
+                    <div className="container">
                         <motion.h1
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
-                            className="text-4xl md:text-6xl font-serif text-white mb-2"
+                            className="room-hero-title"
                         >
                             {room.name}
                         </motion.h1>
-                        <p className="text-[#c9a66b] text-xl font-bold">₦{room.price.toLocaleString()} / night</p>
+                        <p className="room-hero-price">₦{room.price.toLocaleString()} / night</p>
                     </div>
                 </div>
             </div>
 
-            <div className="container mx-auto px-4 py-12">
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+            <div className="container room-content-wrapper">
+                <div className="room-content-grid">
                     {/* Left Content */}
-                    <div className="lg:col-span-2 space-y-12">
+                    <div className="room-main-info">
                         {/* Description */}
-                        <div>
-                            <h2 className="text-2xl font-serif font-bold mb-6 text-[#1e1e1e]">Room Overview</h2>
-                            <p className="text-gray-600 leading-loose text-lg">
+                        <div className="info-block">
+                            <h2 className="info-title">Room Overview</h2>
+                            <p className="info-text">
                                 {room.description}
                                 <br /><br />
                                 Experience the epitome of comfort in our {room.name}.
@@ -73,12 +73,12 @@ const RoomDetails: React.FC = () => {
                         </div>
 
                         {/* Facilities */}
-                        <div>
-                            <h2 className="text-2xl font-serif font-bold mb-6 text-[#1e1e1e]">Room Amenities</h2>
-                            <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
+                        <div className="info-block">
+                            <h2 className="info-title">Room Amenities</h2>
+                            <div className="amenities-grid">
                                 {facilities.map((fac, idx) => (
-                                    <div key={idx} className="flex items-center gap-4 text-gray-700">
-                                        <div className="text-[#c9a66b] text-xl">
+                                    <div key={idx} className="amenity-item">
+                                        <div className="amenity-icon">
                                             <fac.icon />
                                         </div>
                                         <span>{fac.name}</span>
@@ -88,16 +88,16 @@ const RoomDetails: React.FC = () => {
                         </div>
 
                         {/* Gallery Thumbs */}
-                        <div>
-                            <h2 className="text-2xl font-serif font-bold mb-6 text-[#1e1e1e]">Gallery</h2>
-                            <div className="flex gap-4 overflow-x-auto pb-4 custom-scrollbar">
+                        <div className="info-block">
+                            <h2 className="info-title">Gallery</h2>
+                            <div className="gallery-thumbs">
                                 {room.images.map((img, idx) => (
                                     <button
                                         key={idx}
                                         onClick={() => setActiveImage(idx)}
-                                        className={`relative w-32 h-24 flex-shrink-0 rounded-lg overflow-hidden border-2 transition-all ${activeImage === idx ? 'border-[#c9a66b] scale-105' : 'border-transparent opacity-70 hover:opacity-100'}`}
+                                        className={`gallery-thumb ${activeImage === idx ? 'active' : ''}`}
                                     >
-                                        <img src={img} alt={`Thumb ${idx}`} className="w-full h-full object-cover" />
+                                        <img src={img} alt={`Thumb ${idx}`} />
                                     </button>
                                 ))}
                             </div>
@@ -105,44 +105,44 @@ const RoomDetails: React.FC = () => {
                     </div>
 
                     {/* Sidebar Booking Card */}
-                    <div className="lg:col-span-1">
-                        <div className="bg-white p-8 rounded-xl shadow-xl sticky top-32 border-t-4 border-[#c9a66b]">
-                            <h3 className="text-2xl font-serif font-bold mb-2">Book This Room</h3>
-                            <p className="text-gray-500 mb-6 text-sm">Best rates guaranteed</p>
+                    <div className="room-sidebar">
+                        <div className="booking-card-sticky">
+                            <h3 className="booking-card-title">Book This Room</h3>
+                            <p className="booking-card-subtitle">Best rates guaranteed</p>
 
-                            <div className="space-y-4 mb-8">
-                                <div className="flex justify-between items-center py-3 border-b border-gray-100">
-                                    <span className="text-gray-600">Base Rate</span>
-                                    <span className="font-bold">₦{room.price.toLocaleString()}</span>
+                            <div className="price-breakdown">
+                                <div className="pb-row">
+                                    <span>Base Rate</span>
+                                    <span className="bold">₦{room.price.toLocaleString()}</span>
                                 </div>
-                                <div className="flex justify-between items-center py-3 border-b border-gray-100">
-                                    <span className="text-gray-600">Service Charge</span>
-                                    <span className="font-bold">Included</span>
+                                <div className="pb-row">
+                                    <span>Service Charge</span>
+                                    <span className="bold">Included</span>
                                 </div>
-                                <div className="flex justify-between items-center py-3 border-b border-gray-100">
-                                    <span className="text-gray-600">Taxes</span>
-                                    <span className="font-bold">Included</span>
+                                <div className="pb-row">
+                                    <span>Taxes</span>
+                                    <span className="bold">Included</span>
                                 </div>
-                                <div className="flex justify-between items-center py-3 text-lg text-[#0f3d3e]">
-                                    <span className="font-bold">Total</span>
-                                    <span className="font-bold">₦{room.price.toLocaleString()}</span>
+                                <div className="pb-total">
+                                    <span>Total</span>
+                                    <span>₦{room.price.toLocaleString()}</span>
                                 </div>
                             </div>
 
-                            <div className="space-y-2 mb-8">
-                                <div className="flex items-start gap-3 text-sm text-gray-500">
-                                    <FaCheck className="text-green-500 mt-1" />
+                            <div className="booking-perks">
+                                <div className="perk-item">
+                                    <FaCheck className="check-icon" />
                                     <span>Free cancellation up to 24h before check-in</span>
                                 </div>
-                                <div className="flex items-start gap-3 text-sm text-gray-500">
-                                    <FaCheck className="text-green-500 mt-1" />
+                                <div className="perk-item">
+                                    <FaCheck className="check-icon" />
                                     <span>Instant confirmation</span>
                                 </div>
                             </div>
 
                             <button
                                 onClick={() => setIsBookingModalOpen(true)}
-                                className="w-full bg-[#0f3d3e] text-white py-4 rounded-lg font-bold uppercase tracking-wider hover:bg-[#165253] transition-all shadow-lg hover:shadow-xl active:scale-95"
+                                className="btn-book-room"
                             >
                                 Book Now
                             </button>

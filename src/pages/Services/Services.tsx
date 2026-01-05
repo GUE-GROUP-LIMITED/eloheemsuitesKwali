@@ -56,35 +56,33 @@ const Services: React.FC = () => {
 
     return (
         <div className="services-page-container">
-            <div className="container relative mx-auto px-4 pt-32 pb-20">
+            <div className="container services-inner">
 
                 {/* Top Section */}
-                <div className="flex flex-col lg:flex-row justify-between items-start mb-20 gap-10">
-                    <div className="lg:w-1/2">
+                <div className="services-hero">
+                    <div className="services-hero-text">
                         <motion.div
                             initial={{ opacity: 0, x: -20 }}
                             animate={{ opacity: 1, x: 0 }}
-                            className="flex items-center gap-4 mb-4"
+                            className="offer-tag"
                         >
-                            <div className="h-[2px] w-10 bg-[#c9a66b]"></div>
-                            <span className="text-[#c9a66b] uppercase tracking-widest text-xs font-bold">What We Offer</span>
+                            <div className="tag-line"></div>
+                            <span>What We Offer</span>
                         </motion.div>
                         <motion.h1
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.1 }}
-                            className="text-5xl md:text-7xl font-sans font-bold text-white leading-tight"
                         >
                             OUR<br />SERVICES
                         </motion.h1>
                     </div>
 
-                    <div className="lg:w-1/2 flex flex-col items-start lg:items-end">
+                    <div className="services-hero-desc">
                         <motion.p
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             transition={{ delay: 0.2 }}
-                            className="text-gray-400 max-w-md mb-8 lg:text-right leading-relaxed"
                         >
                             We provide top-notch hospitality services tailored to your needs. From high-speed internet to exquisite dining, we ensure your stay is comfortable and memorable.
                         </motion.p>
@@ -101,18 +99,18 @@ const Services: React.FC = () => {
                     </div>
                 </div>
 
-                <div className="flex flex-col lg:flex-row gap-16">
+                <div className="services-main-content">
                     {/* Sidebar Indicator */}
-                    <div className="hidden lg:flex flex-col items-center justify-start pt-10 w-24 flex-shrink-0">
+                    <div className="services-sidebar">
                         <span className="scrolldown-text">SCROLL DOWN</span>
-                        <div className="h-24 w-[1px] bg-gray-700 my-4"></div>
-                        <div className="w-10 h-10 rounded-full border border-gray-600 flex items-center justify-center text-white animate-bounce">
+                        <div className="scroll-line"></div>
+                        <div className="scroll-circle">
                             <FaArrowDown size={12} />
                         </div>
                     </div>
 
                     {/* Services Grid */}
-                    <div className="flex-1 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div className="services-grid">
                         {services.map((service, index) => (
                             <motion.div
                                 key={index}
