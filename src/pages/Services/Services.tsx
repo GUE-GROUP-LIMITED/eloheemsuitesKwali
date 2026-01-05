@@ -70,7 +70,7 @@ const Services: React.FC = () => {
                 title="Our Services"
                 subtitle="WHAT WE OFFER"
                 description="World-class hospitality services tailored to exceed your expectations"
-                backgroundImage="https://codesnippet-741238344.imgix.net/eloheem/eloheem4.jpg"
+                backgroundImage="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80"
             />
 
             {/* Services Grid Section */}

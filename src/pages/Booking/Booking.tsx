@@ -19,7 +19,7 @@ const Booking: React.FC = () => {
                 title="Book Your Stay"
                 subtitle="RESERVATIONS"
                 description="Choose your perfect room and secure your luxury experience"
-                backgroundImage="https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80"
+                backgroundImage="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80"
                 height="50vh"
             />
 

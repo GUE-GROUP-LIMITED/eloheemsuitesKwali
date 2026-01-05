@@ -30,7 +30,7 @@ const Amenities: React.FC = () => {
                 title="Our Amenities"
                 subtitle="LUXURY FEATURES"
                 description="Experience world-class facilities designed for your ultimate comfort"
-                backgroundImage="https://images.unsplash.com/photo-1582719508461-905c673771fd?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80"
+                backgroundImage="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80"
             />
 
             {/* Main Amenities Grid */}

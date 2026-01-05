@@ -51,7 +51,7 @@ const ReviewsPage: React.FC = () => {
                 title="Guest Reviews"
                 subtitle="TESTIMONIALS"
                 description="Hear what our valued guests have to say about their experience"
-                backgroundImage="https://codesnippet-741238344.imgix.net/eloheem/_11A2439.JPG"
+                backgroundImage="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80"
             />
 
             {/* Featured Review Slider */}
