@@ -9,6 +9,9 @@ import About from './pages/About/About';
 import Gallery from './pages/Gallery/Gallery';
 import ReviewsPage from './pages/Reviews/Reviews';
 import Footer from './components/Footer';
+import Amenities from './pages/Amenities/Amenities';
+import Booking from './pages/Booking/Booking';
+import NotFound from './pages/NotFound/NotFound';
 import { Routes, Route } from 'react-router-dom';
 
 const App: React.FC = () => {
@@ -20,10 +23,13 @@ const App: React.FC = () => {
         <Route path="/rooms" element={<RoomsPage />} />
         <Route path="/rooms/:id" element={<RoomDetails />} />
         <Route path="/services" element={<Services />} />
+        <Route path="/amenities" element={<Amenities />} />
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/reviews" element={<ReviewsPage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/about" element={<About />} />
+        <Route path="/booking" element={<Booking />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
     </div>

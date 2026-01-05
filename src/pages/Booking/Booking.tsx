@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import { rooms } from '../../data/rooms';
 import { useNavigate } from 'react-router-dom';
 import BookingModal from '../../components/BookingModal';
+import PageHero from '../../components/PageHero';
 import { motion, AnimatePresence } from 'framer-motion';
+import { FaUserFriends, FaBed, FaCheck } from 'react-icons/fa';
 
 const Booking: React.FC = () => {
     const navigate = useNavigate();
@@ -12,81 +14,88 @@ const Booking: React.FC = () => {
     const selectedRoom = rooms.find(r => r.id === selectedRoomId);
 
     return (
-        <div className="booking-page-container">
-            <div className="booking-header">
-                <h1 className="booking-title">Plan Your Stay</h1>
-                <p className="booking-subtitle">Select a room to begin your reservation</p>
-            </div>
+        <div className="booking-page">
+            <PageHero
+                title="Book Your Stay"
+                subtitle="RESERVATIONS"
+                description="Choose your perfect room and secure your luxury experience"
+                backgroundImage="https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80"
+                height="50vh"
+            />
 
-            <div className="container">
-                <div className="booking-interface">
-                    <div className="booking-grid">
-                        {/* Sidebar Room List */}
-                        <div className="booking-room-list">
-                            <h3 className="list-title">Select Room Type</h3>
-                            <div className="list-items">
+            <section className="booking-section">
+                <div className="container">
+                    <div className="booking-layout">
+
+                        {/* Sidebar */}
+                        <div className="booking-sidebar">
+                            <h3 className="sidebar-title">Select Room Type</h3>
+                            <div className="room-list">
                                 {rooms.map(room => (
                                     <button
                                         key={room.id}
                                         onClick={() => setSelectedRoomId(room.id)}
-                                        className={`room-select-btn ${selectedRoomId === room.id ? 'active' : ''}`}
+                                        className={`room-select-item ${selectedRoomId === room.id ? 'active' : ''}`}
                                     >
-                                        <div className="room-btn-name">{room.name}</div>
-                                        <div className="room-btn-price">
-                                            ₦{room.price.toLocaleString()}
-                                        </div>
+                                        <span className="room-name">{room.name}</span>
+                                        <span className="room-price">₦{room.price.toLocaleString()}</span>
                                     </button>
                                 ))}
                             </div>
                         </div>
 
-                        {/* Main Content Preview */}
-                        <div className="booking-preview">
+                        {/* Preview Area */}
+                        <div className="booking-preview-area">
                             <AnimatePresence mode='wait'>
                                 {selectedRoom && (
                                     <motion.div
                                         key={selectedRoom.id}
-                                        initial={{ opacity: 0, x: 20 }}
+                                        initial={{ opacity: 0, x: 30 }}
                                         animate={{ opacity: 1, x: 0 }}
-                                        exit={{ opacity: 0, x: -20 }}
-                                        transition={{ duration: 0.3 }}
-                                        className="preview-content"
+                                        exit={{ opacity: 0, x: -30 }}
+                                        transition={{ duration: 0.4 }}
+                                        className="preview-card"
                                     >
-                                        <div className="preview-image-container group">
-                                            <img src={selectedRoom.images[0]} alt={selectedRoom.name} className="preview-img" />
+                                        <div className="preview-image">
+                                            <img src={selectedRoom.images[0]} alt={selectedRoom.name} />
                                             <div className="preview-overlay">
                                                 <h2>{selectedRoom.name}</h2>
                                             </div>
                                         </div>
 
-                                        <div className="preview-stats">
-                                            <div className="stat-box">
-                                                <span className="stat-label">Price per night</span>
-                                                <span className="stat-value">₦{selectedRoom.price.toLocaleString()}</span>
+                                        <div className="preview-body">
+                                            <div className="preview-meta">
+                                                <div className="meta-item">
+                                                    <FaBed />
+                                                    <span>King Size Bed</span>
+                                                </div>
+                                                <div className="meta-item">
+                                                    <FaUserFriends />
+                                                    <span>2 Adults</span>
+                                                </div>
                                             </div>
-                                            <div className="stat-box">
-                                                <span className="stat-label">Max Occupancy</span>
-                                                <span className="stat-value">2 Adults</span>
+
+                                            <div className="preview-price-box">
+                                                <span className="price-label">Price per night</span>
+                                                <span className="price-value">₦{selectedRoom.price.toLocaleString()}</span>
                                             </div>
-                                        </div>
 
-                                        <p className="preview-desc">
-                                            {selectedRoom.description}
-                                        </p>
+                                            <p className="preview-description">{selectedRoom.description}</p>
 
-                                        <div className="preview-actions">
-                                            <button
-                                                onClick={() => navigate(`/rooms/${selectedRoom.id}`)}
-                                                className="btn-view-details"
-                                            >
-                                                View Details
-                                            </button>
-                                            <button
-                                                onClick={() => setIsModalOpen(true)}
-                                                className="btn-book-now-large"
-                                            >
-                                                Book Now
-                                            </button>
+                                            <ul className="preview-features">
+                                                <li><FaCheck /> Complimentary Breakfast</li>
+                                                <li><FaCheck /> Free High-Speed WiFi</li>
+                                                <li><FaCheck /> 24/7 Room Service</li>
+                                            </ul>
+
+                                            <div className="preview-actions">
+                                                <button className="btn-book-primary" onClick={() => setIsModalOpen(true)}>
+                                                    Book This Room
+                                                </button>
+                                                <button className="btn-view-details" onClick={() => navigate(`/rooms/${selectedRoom.id}`)}>
+                                                    View Full Details
+                                                </button>
+                                            </div>
                                         </div>
                                     </motion.div>
                                 )}
@@ -94,7 +103,7 @@ const Booking: React.FC = () => {
                         </div>
                     </div>
                 </div>
-            </div>
+            </section>
 
             <BookingModal
                 isOpen={isModalOpen}

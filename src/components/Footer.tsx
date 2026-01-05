@@ -1,5 +1,6 @@
 import React from 'react';
 import { BsArrowUpRight } from 'react-icons/bs';
+import { Link } from 'react-router-dom';
 
 const Footer: React.FC = () => {
     return (
@@ -11,16 +12,16 @@ const Footer: React.FC = () => {
                         <p className="footer-intro-text">
                             Eloheem promotes sustainable hospitality with beautifully crafted <span className="italic-highlight">Comfort & Style!</span>
                         </p>
-                        <button className="btn-footer-join">
+                        <Link to="/booking" className="btn-footer-join">
                             Book Now <BsArrowUpRight className="ml-2" />
-                        </button>
+                        </Link>
                     </div>
 
                     <div className="footer-nav-menu section-right">
-                        <a href="/">Home</a>
-                        <a href="/rooms">Rooms</a>
-                        <a href="/amenities">Amenities</a>
-                        <a href="/contact">Contact</a>
+                        <Link to="/">Home</Link>
+                        <Link to="/rooms">Rooms</Link>
+                        <Link to="/amenities">Amenities</Link>
+                        <Link to="/contact">Contact</Link>
                     </div>
                 </div>
 
