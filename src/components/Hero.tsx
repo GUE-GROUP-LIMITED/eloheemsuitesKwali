@@ -2,18 +2,18 @@ import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaMapMarkerAlt } from 'react-icons/fa';
 
-const cardImages = [
-    "https://codesnippet-741238344.imgix.net/eloheem/_11A2348.JPG",
-    "https://codesnippet-741238344.imgix.net/eloheem/eloheem4.jpg",
-    "https://codesnippet-741238344.imgix.net/eloheem/eloheem3.jpg"
+const cardData = [
+    { image: "https://codesnippet-741238344.imgix.net/eloheem/_11A2348.JPG", title: "Presidential Suite" },
+    { image: "https://codesnippet-741238344.imgix.net/eloheem/eloheem4.jpg", title: "Executive Suite" },
+    { image: "https://codesnippet-741238344.imgix.net/eloheem/eloheem3.jpg", title: "Standard Room" }
 ];
 
 const Hero: React.FC = () => {
-    const [currentCardImage, setCurrentCardImage] = useState(0);
+    const [currentIndex, setCurrentIndex] = useState(0);
 
     useEffect(() => {
         const timer = setInterval(() => {
-            setCurrentCardImage((prev) => (prev + 1) % cardImages.length);
+            setCurrentIndex((prev) => (prev + 1) % cardData.length);
         }, 4000);
         return () => clearInterval(timer);
     }, []);
@@ -67,9 +67,9 @@ const Hero: React.FC = () => {
                         <div className="hero-card-image-wrapper relative overflow-hidden">
                             <AnimatePresence mode='wait'>
                                 <motion.img
-                                    key={currentCardImage}
-                                    src={cardImages[currentCardImage]}
-                                    alt="Presidential Suite"
+                                    key={currentIndex}
+                                    src={cardData[currentIndex].image}
+                                    alt={cardData[currentIndex].title}
                                     className="hero-card-image absolute inset-0 w-full h-full object-cover"
                                     initial={{ opacity: 0, x: 50 }}
                                     animate={{ opacity: 1, x: 0 }}
@@ -80,21 +80,28 @@ const Hero: React.FC = () => {
                         </div>
                         <div className="hero-card-details">
                             <div className="hero-card-header">
-                                <h3>Presidential Suite</h3>
-                                <div className="hero-card-price">
-                                    <span>₦20,000</span> /night
-                                </div>
+                                <AnimatePresence mode='wait'>
+                                    <motion.h3
+                                        key={currentIndex}
+                                        initial={{ opacity: 0, y: 10 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        exit={{ opacity: 0, y: -10 }}
+                                        transition={{ duration: 0.3 }}
+                                    >
+                                        {cardData[currentIndex].title}
+                                    </motion.h3>
+                                </AnimatePresence>
                             </div>
                             <div className="hero-card-location">
                                 <FaMapMarkerAlt /> Kwali, Abuja
                             </div>
                             {/* Dots for carousel visual */}
                             <div className="hero-card-dots">
-                                {cardImages.map((_, index) => (
+                                {cardData.map((_, index) => (
                                     <span
                                         key={index}
-                                        className={`dot ${index === currentCardImage ? 'active' : ''}`}
-                                        onClick={() => setCurrentCardImage(index)}
+                                        className={`dot ${index === currentIndex ? 'active' : ''}`}
+                                        onClick={() => setCurrentIndex(index)}
                                     ></span>
                                 ))}
                             </div>
