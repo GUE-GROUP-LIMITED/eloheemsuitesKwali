@@ -43,7 +43,7 @@ const RoomsPage: React.FC = () => {
                 title="Our Rooms & Spaces"
                 subtitle="ACCOMMODATIONS"
                 description="Discover our collection of luxurious rooms and versatile event spaces"
-                backgroundImage="https://codesnippet-741238344.imgix.net/eloheem/eloheem5.jpg"
+                backgroundImage="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80"
             />
 
             {/* Category Tabs */}
