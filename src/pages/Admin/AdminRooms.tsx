@@ -14,7 +14,7 @@ interface Room {
     name: string;
     slug: string;
     type: string;
-    category: string;
+    category: 'accommodation' | 'event_space';
     description: string;
     price: number;
     capacity_adults: number;
@@ -32,7 +32,20 @@ const AdminRooms: React.FC = () => {
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const [editingRoom, setEditingRoom] = useState<Room | null>(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [formData, setFormData] = useState({
+    const [formData, setFormData] = useState<{
+        name: string;
+        slug: string;
+        type: string;
+        category: 'accommodation' | 'event_space';
+        description: string;
+        price: number;
+        capacity_adults: number;
+        bed_type: string;
+        images: string[];
+        amenities: string[];
+        is_available: boolean;
+        is_featured: boolean;
+    }>({
         name: '',
         slug: '',
         type: 'ROYAL',
@@ -119,8 +132,11 @@ const AdminRooms: React.FC = () => {
     const handleSave = async () => {
         try {
             if (editingRoom) {
-                // Update existing room
-                await adminApi.rooms.update(editingRoom.id, formData);
+                // Update existing room - cast category to proper type
+                await adminApi.rooms.update(editingRoom.id, {
+                    ...formData,
+                    category: formData.category as 'accommodation' | 'event_space'
+                });
             } else {
                 // For now, we'll use the update API - in production you'd have a create endpoint
                 console.log('Creating new room:', formData);
@@ -340,7 +356,7 @@ const AdminRooms: React.FC = () => {
                                         <label>Category</label>
                                         <select
                                             value={formData.category}
-                                            onChange={(e) => setFormData({ ...formData, category: e.target.value })}
+                                            onChange={(e) => setFormData({ ...formData, category: e.target.value as 'accommodation' | 'event_space' })}
                                         >
                                             <option value="accommodation">Accommodation</option>
                                             <option value="event_space">Event Space</option>
