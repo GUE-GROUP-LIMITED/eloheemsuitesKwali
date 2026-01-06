@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaMapMarkerAlt } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
+
 
 const cardData = [
     { image: "https://codesnippet-741238344.imgix.net/eloheem/_11A2348.JPG", title: "Presidential Suite" },
     { image: "https://codesnippet-741238344.imgix.net/eloheem/eloheem4.jpg", title: "Executive Suite" },
     { image: "https://codesnippet-741238344.imgix.net/eloheem/eloheem3.jpg", title: "Standard Room" }
 ];
+
+
 
 const Hero: React.FC = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -52,11 +56,11 @@ const Hero: React.FC = () => {
                             with meticulously designed rooms, world-class amenities, and
                             unparalleled service in the heart of Kwali.
                         </p>
-                        <button className="btn-book-hero">Book Now</button>
+                       <Link to='/booking'> <button className="btn-book-hero">Book Now</button></Link>
                     </motion.div>
                 </div>
 
-                {/* Right Column: Featured Room Card with Slider */}
+                {/* Right Column: Featured Room Card with Slider */}    
                 <div className="hero-column-right">
                     <motion.div
                         className="hero-room-card"
