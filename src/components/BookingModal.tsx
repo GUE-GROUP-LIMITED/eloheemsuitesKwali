@@ -122,7 +122,7 @@ const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose, room }) =>
                                     <FaCalendarAlt className="date-picker-icon" />
                                     <DatePicker
                                         selected={formData.checkIn}
-                                        onChange={(date) => setFormData(prev => ({ ...prev, checkIn: date }))}
+                                        onChange={(date: Date | null) => setFormData(prev => ({ ...prev, checkIn: date }))}
                                         selectsStart
                                         startDate={formData.checkIn}
                                         endDate={formData.checkOut}
@@ -141,7 +141,7 @@ const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose, room }) =>
                                     <FaCalendarAlt className="date-picker-icon" />
                                     <DatePicker
                                         selected={formData.checkOut}
-                                        onChange={(date) => setFormData(prev => ({ ...prev, checkOut: date }))}
+                                        onChange={(date: Date | null) => setFormData(prev => ({ ...prev, checkOut: date }))}
                                         selectsEnd
                                         startDate={formData.checkIn}
                                         endDate={formData.checkOut}
