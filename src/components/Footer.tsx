@@ -42,7 +42,7 @@ const Footer: React.FC = () => {
                         <a href="/privacy">Privacy Policy</a>
                         <a href="/terms">Terms & Conditions</a>
                     </div>
-                    <p>&copy; 2025 Eloheem Suites.</p>
+                    <p>&copy; 2026 Eloheem Suites.</p>
                 </div>
             </div>
         </footer>
