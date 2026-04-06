@@ -19,6 +19,7 @@ import AdminRooms from './pages/Admin/AdminRooms';
 import AdminReviews from './pages/Admin/AdminReviews';
 import AdminInquiries from './pages/Admin/AdminInquiries';
 import { Routes, Route, useLocation } from 'react-router-dom';
+import ScrollToTop from './components/ScrollToTop';
 
 // Layout wrapper for public pages (with Navbar and Footer)
 const PublicLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => (
@@ -35,6 +36,7 @@ const App: React.FC = () => {
 
   return (
     <div className="app-container">
+      <ScrollToTop />
       <Routes>
         {/* Public Routes */}
         <Route path="/" element={<PublicLayout><Home /></PublicLayout>} />

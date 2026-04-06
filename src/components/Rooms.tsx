@@ -10,7 +10,7 @@ interface RoomsProps {
 
 const Rooms: React.FC<RoomsProps> = ({ onBook }) => {
     const accommodationRooms = rooms.filter(room =>
-        ['ROYAL', 'QUEENS_KINGS', 'EXECUTIVE_LUXURY'].includes(room.type)
+        ['QUEENS_KINGS', 'EXECUTIVE_LUXURY'].includes(room.type)
     );
 
     return (

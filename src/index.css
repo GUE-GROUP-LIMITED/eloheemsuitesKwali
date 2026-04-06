@@ -55,6 +55,23 @@ img {
   display: block;
 }
 
+/* OptimizedImage fade-in on load */
+.opt-img {
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.opt-img--loaded {
+  opacity: 1;
+}
+
+/* Price on Request label */
+.price-tbd {
+  font-style: italic;
+  font-size: 0.9rem !important;
+  color: var(--color-secondary) !important;
+}
+
 button {
   cursor: pointer;
   border: none;

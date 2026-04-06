@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { rooms } from '../../data/rooms';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaTimes, FaSearchPlus, FaArrowRight, FaArrowLeft } from 'react-icons/fa';
+import OptimizedImage from '../../components/OptimizedImage';
 
 const Gallery: React.FC = () => {
     // 1. Gather all images with categories
@@ -26,6 +27,19 @@ const Gallery: React.FC = () => {
                 }
             });
         });
+        // Extra hotel images not in any room
+        const hotelImages: { src: string; category: string; title: string }[] = [
+            { src: '/images/restaurant.jpeg',      category: 'Hotel', title: 'Hotel Restaurant' },
+            { src: '/images/reception.jpeg',        category: 'Hotel', title: 'Hotel Reception' },
+            { src: '/images/upstairs_view.jpeg',    category: 'Hotel', title: 'Hotel Exterior' },
+        ];
+        hotelImages.forEach(hi => {
+            if (!seen.has(hi.src)) {
+                seen.add(hi.src);
+                images.push(hi);
+            }
+        });
+
         return images;
     }, []);
 
@@ -36,7 +50,7 @@ const Gallery: React.FC = () => {
         ? allImages
         : allImages.filter(img => img.category === filter);
 
-    const tabs = ['All', 'Rooms', 'Events'];
+    const tabs = ['All', 'Rooms', 'Events', 'Hotel'];
 
     const openLightbox = (index: number) => setSelectedImageIndex(index);
     const closeLightbox = () => setSelectedImageIndex(null);
@@ -101,7 +115,7 @@ const Gallery: React.FC = () => {
                                 className="gallery-item group"
                                 onClick={() => openLightbox(index)}
                             >
-                                <img src={img.src} alt={img.title} className="gallery-img" />
+                                <OptimizedImage src={img.src} alt={img.title} className="gallery-img" />
                                 <div className="gallery-item-overlay">
                                     <div className="gallery-overlay-content">
                                         <FaSearchPlus className="gallery-icon" />
