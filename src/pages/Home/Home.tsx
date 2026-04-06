@@ -8,6 +8,7 @@ import Contact from '../../components/Contact';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { FaBed, FaUserFriends, FaWifi, FaArrowRight, FaStar, FaShieldAlt, FaLeaf, FaConciergeBell } from 'react-icons/fa';
+import OptimizedImage from '../../components/OptimizedImage';
 
 const Home: React.FC = () => {
     const navigate = useNavigate();
@@ -20,7 +21,7 @@ const Home: React.FC = () => {
     };
 
     const accommodationRooms = rooms.filter(room =>
-        ['ROYAL', 'QUEENS_KINGS', 'EXECUTIVE_LUXURY'].includes(room.type)
+        ['QUEENS_KINGS', 'EXECUTIVE_LUXURY'].includes(room.type)
     );
 
     const values = [
@@ -47,8 +48,8 @@ const Home: React.FC = () => {
                             transition={{ duration: 0.7 }}
                         >
                             <div className="about-img-wrapper">
-                                <img
-                                    src="https://codesnippet-741238344.imgix.net/eloheem/eloheem2.jpg"
+                                <OptimizedImage
+                                    src="/images/Kings&Queens_special/kings-queens-2.jpeg"
                                     alt="Eloheem Suites Interior"
                                 />
                                 <div className="about-img-badge">
@@ -119,7 +120,7 @@ const Home: React.FC = () => {
                                 transition={{ delay: index * 0.15, duration: 0.5 }}
                             >
                                 <div className="home-room-image">
-                                    <img src={room.images[0]} alt={room.name} />
+                                    <OptimizedImage src={room.images[0]} alt={room.name} />
                                     <div className="home-room-overlay">
                                         <button
                                             className="btn-room-view"

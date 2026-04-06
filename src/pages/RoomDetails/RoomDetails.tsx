@@ -4,6 +4,7 @@ import { rooms } from '../../data/rooms';
 import { motion } from 'framer-motion';
 import { FaWifi, FaCoffee, FaTv, FaBath, FaSnowflake, FaCheck } from 'react-icons/fa';
 import BookingModal from '../../components/BookingModal';
+import OptimizedImage from '../../components/OptimizedImage';
 
 const RoomDetails: React.FC = () => {
     const { id } = useParams<{ id: string }>();
@@ -36,10 +37,11 @@ const RoomDetails: React.FC = () => {
         <div className="room-details-page">
             {/* Hero Image Section */}
             <div className="room-hero">
-                <img
+                <OptimizedImage
                     src={room.images[activeImage]}
                     alt={room.name}
                     className="room-hero-img"
+                    priority
                 />
                 <div className="room-hero-overlay">
                     <div className="container">
@@ -97,7 +99,7 @@ const RoomDetails: React.FC = () => {
                                         onClick={() => setActiveImage(idx)}
                                         className={`gallery-thumb ${activeImage === idx ? 'active' : ''}`}
                                     >
-                                        <img src={img} alt={`Thumb ${idx}`} />
+                                        <OptimizedImage src={img} alt={`Thumb ${idx}`} />
                                     </button>
                                 ))}
                             </div>

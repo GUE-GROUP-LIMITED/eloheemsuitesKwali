@@ -6,6 +6,7 @@ import PageHero from '../../components/PageHero';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { FaBed, FaUserFriends, FaWifi, FaSnowflake, FaTv, FaArrowRight } from 'react-icons/fa';
+import OptimizedImage from '../../components/OptimizedImage';
 
 const RoomsPage: React.FC = () => {
     const navigate = useNavigate();
@@ -19,11 +20,11 @@ const RoomsPage: React.FC = () => {
     };
 
     const accommodationRooms = rooms.filter(room =>
-        ['ROYAL', 'QUEENS_KINGS', 'EXECUTIVE_LUXURY'].includes(room.type)
+        ['QUEENS_KINGS', 'EXECUTIVE_LUXURY'].includes(room.type)
     );
 
     const eventSpaces = rooms.filter(room =>
-        ['GOLDEN_HALL', 'RECEPTION_GROUND'].includes(room.type)
+        ['GOLDEN_HALL', 'RECEPTION_GROUND', 'EVENT_SPACE'].includes(room.type)
     );
 
     const displayedRooms = activeTab === 'accommodations' ? accommodationRooms : eventSpaces;
@@ -43,7 +44,7 @@ const RoomsPage: React.FC = () => {
                 title="Our Rooms & Spaces"
                 subtitle="ACCOMMODATIONS"
                 description="Discover our collection of luxurious rooms and versatile event spaces"
-                backgroundImage="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80"
+                backgroundImage="/images/upstairs_view.jpeg"
             />
 
             {/* Category Tabs */}
@@ -96,7 +97,7 @@ const RoomsPage: React.FC = () => {
                                 variants={cardVariants}
                             >
                                 <div className="room-card-image">
-                                    <img src={room.images[0]} alt={room.name} />
+                                    <OptimizedImage src={room.images[0]} alt={room.name} />
                                     <div className="room-card-overlay">
                                         <button
                                             className="btn-quick-view"
@@ -108,9 +109,9 @@ const RoomsPage: React.FC = () => {
                                     <div className="room-card-badge">
                                         {room.type === 'EXECUTIVE_LUXURY' && 'Premium'}
                                         {room.type === 'QUEENS_KINGS' && 'Popular'}
-                                        {room.type === 'ROYAL' && 'Classic'}
                                         {room.type === 'GOLDEN_HALL' && 'Intimate'}
                                         {room.type === 'RECEPTION_GROUND' && 'Grand'}
+                                        {room.type === 'EVENT_SPACE' && 'Flexible'}
                                     </div>
                                 </div>
 
@@ -128,7 +129,8 @@ const RoomsPage: React.FC = () => {
                                             </>
                                         ) : (
                                             <>
-                                                <span><FaUserFriends /> {room.type === 'GOLDEN_HALL' ? '40-70 Guests' : '500-800 Guests'}</span>
+                                                {room.type === 'GOLDEN_HALL' && <span><FaUserFriends /> 40-70 Guests</span>}
+                                                {room.type === 'RECEPTION_GROUND' && <span><FaUserFriends /> 500-800 Guests</span>}
                                                 <span><FaSnowflake /> Climate Control</span>
                                                 <span><FaWifi /> WiFi</span>
                                             </>
@@ -138,10 +140,16 @@ const RoomsPage: React.FC = () => {
                                     <p className="room-card-desc">{room.description}</p>
 
                                     <div className="room-card-footer">
-                                        <div className="room-price">
-                                            <span className="price-amount">₦{room.price.toLocaleString()}</span>
-                                            <span className="price-unit">/ {activeTab === 'accommodations' ? 'night' : 'event'}</span>
-                                        </div>
+                                        {room.price > 0 ? (
+                                            <div className="room-price">
+                                                <span className="price-amount">₦{room.price.toLocaleString()}</span>
+                                                <span className="price-unit">/ {activeTab === 'accommodations' ? 'night' : 'event'}</span>
+                                            </div>
+                                        ) : (
+                                            <div className="room-price">
+                                                <span className="price-amount price-tbd">Price on Request</span>
+                                            </div>
+                                        )}
                                         <button
                                             className="btn-book-room"
                                             onClick={() => handleBook(room)}

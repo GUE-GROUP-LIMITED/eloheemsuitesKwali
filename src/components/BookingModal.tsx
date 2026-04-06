@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import type { Room } from '../data/rooms';
-import { FaTimes } from 'react-icons/fa';
+import { FaTimes, FaCalendarAlt } from 'react-icons/fa';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+import '../datepicker-custom.css';
 
 interface BookingModalProps {
     isOpen: boolean;
@@ -18,8 +21,8 @@ declare global {
 const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose, room }) => {
 
     const [formData, setFormData] = useState({
-        checkIn: '',
-        checkOut: '',
+        checkIn: null as Date | null,
+        checkOut: null as Date | null,
         fullName: '',
         email: '',
         phone: '',
@@ -30,9 +33,7 @@ const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose, room }) =>
 
     useEffect(() => {
         if (formData.checkIn && formData.checkOut && room) {
-            const start = new Date(formData.checkIn);
-            const end = new Date(formData.checkOut);
-            const diffTime = Math.abs(end.getTime() - start.getTime());
+            const diffTime = Math.abs(formData.checkOut.getTime() - formData.checkIn.getTime());
             const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 
             if (diffDays > 0) {
@@ -65,8 +66,8 @@ const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose, room }) =>
             ref: `txref_${room?.id}_${Date.now()}`,
             metadata: {
                 room_type: room?.type,
-                check_in: formData.checkIn,
-                check_out: formData.checkOut,
+                check_in: formData.checkIn?.toISOString().split('T')[0] || '',
+                check_out: formData.checkOut?.toISOString().split('T')[0] || '',
                 full_name: formData.fullName,
                 days: days
             },
@@ -116,44 +117,64 @@ const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose, room }) =>
                     <form onSubmit={triggerPayment} className="modal-body">
                         <div className="form-grid">
                             <div className="form-group">
-                                <label className="block text-sm font-medium text-gray-500 mb-1">Check-in</label>
-                                <input
-                                    type="date"
-                                    name="checkIn"
-                                    required
-                                    onChange={handleInputChange}
-                                    className="form-control"
-                                />
+                                <label>Check-in Date</label>
+                                <div className="date-picker-wrapper">
+                                    <FaCalendarAlt className="date-picker-icon" />
+                                    <DatePicker
+                                        selected={formData.checkIn}
+                                        onChange={(date: Date | null) => setFormData(prev => ({ ...prev, checkIn: date }))}
+                                        selectsStart
+                                        startDate={formData.checkIn}
+                                        endDate={formData.checkOut}
+                                        minDate={new Date()}
+                                        placeholderText="Select check-in date"
+                                        dateFormat="MMMM d, yyyy"
+                                        className="form-control date-picker-input"
+                                        withPortal
+                                        required
+                                    />
+                                </div>
                             </div>
                             <div className="form-group">
-                                <label className="block text-sm font-medium text-gray-500 mb-1">Check-out</label>
-                                <input
-                                    type="date"
-                                    name="checkOut"
-                                    required
-                                    onChange={handleInputChange}
-                                    className="form-control"
-                                />
+                                <label>Check-out Date</label>
+                                <div className="date-picker-wrapper">
+                                    <FaCalendarAlt className="date-picker-icon" />
+                                    <DatePicker
+                                        selected={formData.checkOut}
+                                        onChange={(date: Date | null) => setFormData(prev => ({ ...prev, checkOut: date }))}
+                                        selectsEnd
+                                        startDate={formData.checkIn}
+                                        endDate={formData.checkOut}
+                                        minDate={formData.checkIn || new Date()}
+                                        placeholderText="Select check-out date"
+                                        dateFormat="MMMM d, yyyy"
+                                        className="form-control date-picker-input"
+                                        withPortal
+                                        required
+                                    />
+                                </div>
                             </div>
                         </div>
 
                         <div className="form-grid">
                             <div className="form-group">
-                                <label className="block text-sm font-medium text-gray-500 mb-1">Full Name</label>
+                                <label>Full Name</label>
                                 <input
                                     type="text"
                                     name="fullName"
                                     required
+                                    placeholder="John Doe"
                                     onChange={handleInputChange}
                                     className="form-control"
                                 />
                             </div>
                             <div className="form-group">
-                                <label className="block text-sm font-medium text-gray-500 mb-1">Email</label>
+                                <label>Email Address</label>
                                 <input
                                     type="email"
                                     name="email"
                                     required
+                                    placeholder="john@example.com"
                                     onChange={handleInputChange}
                                     className="form-control"
                                 />

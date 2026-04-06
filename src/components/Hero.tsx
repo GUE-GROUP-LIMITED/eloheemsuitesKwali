@@ -2,12 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaMapMarkerAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import OptimizedImage from './OptimizedImage';
 
 
 const cardData = [
-    { image: "https://codesnippet-741238344.imgix.net/eloheem/_11A2348.JPG", title: "Presidential Suite" },
-    { image: "https://codesnippet-741238344.imgix.net/eloheem/eloheem4.jpg", title: "Executive Suite" },
-    { image: "https://codesnippet-741238344.imgix.net/eloheem/eloheem3.jpg", title: "Standard Room" }
+    { image: "/images/executive_suites_images/executive-suite-1.jpeg", title: "Executive Suite" },
+    { image: "/images/Kings&Queens_special/kings-queens-1.jpeg", title: "Kings & Queens Room" },
+    { image: "/images/executive_suites_images/executive-suite-4.jpeg", title: "Luxury Suite" }
 ];
 
 
@@ -25,10 +26,11 @@ const Hero: React.FC = () => {
     return (
         <section className="hero">
             {/* Background Image */}
-            <img
-                src="https://codesnippet-741238344.imgix.net/eloheem/eloheem.jpg"
+            <OptimizedImage
+                src="/images/upstairs_view.jpeg"
                 alt="Eloheem Suites Exterior"
                 className="hero-image"
+                priority
             />
 
             {/* Gradient Overlay (Dark Teal Left -> Transparent Right) */}
@@ -75,6 +77,8 @@ const Hero: React.FC = () => {
                                     src={cardData[currentIndex].image}
                                     alt={cardData[currentIndex].title}
                                     className="hero-card-image absolute inset-0 w-full h-full object-cover"
+                                    loading="eager"
+                                    decoding="async"
                                     initial={{ opacity: 0, x: 50 }}
                                     animate={{ opacity: 1, x: 0 }}
                                     exit={{ opacity: 0, x: -50 }}
