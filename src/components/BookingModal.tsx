@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import type { Room } from '../data/rooms';
-import { FaTimes, FaCalendarAlt } from 'react-icons/fa';
+import { FaTimes, FaCalendarAlt, FaWhatsapp } from 'react-icons/fa';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import '../datepicker-custom.css';
@@ -12,11 +12,7 @@ interface BookingModalProps {
     room?: Room | null;
 }
 
-declare global {
-    interface Window {
-        PaystackPop: any;
-    }
-}
+const WHATSAPP_NUMBER = '2349028873258';
 
 const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose, room }) => {
 
@@ -51,39 +47,32 @@ const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose, room }) =>
         setFormData(prev => ({ ...prev, [name]: value }));
     };
 
-    const handlePayment = () => {
-        if (!window.PaystackPop) {
-            alert("Paystack not loaded");
-            return;
-        }
+    const formatDate = (date: Date | null) =>
+        date ? date.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' }) : 'N/A';
 
-        const paystack = new window.PaystackPop();
-        paystack.newTransaction({
-            key: 'pk_test_ae4308057c9ff208f4ee6e029a8beab9f05b082d', // Public Test Key from legacy code
-            email: formData.email,
-            amount: totalPrice * 100, // In kobo
-            currency: 'NGN',
-            ref: `txref_${room?.id}_${Date.now()}`,
-            metadata: {
-                room_type: room?.type,
-                check_in: formData.checkIn?.toISOString().split('T')[0] || '',
-                check_out: formData.checkOut?.toISOString().split('T')[0] || '',
-                full_name: formData.fullName,
-                days: days
-            },
-            callback: (response: any) => {
-                alert("Payment Successful! Ref: " + response.reference);
-                onClose();
-            },
-            onClose: () => {
-                alert("Transaction cancelled.");
-            }
-        });
-    };
-
-    const triggerPayment = (e: React.FormEvent) => {
+    const sendToWhatsApp = (e: React.FormEvent) => {
         e.preventDefault();
-        handlePayment();
+
+        const message = [
+            `🏨 *New Booking Request – Eloheems Suites Kwali*`,
+            ``,
+            `📋 *Room:* ${room?.name ?? 'N/A'}`,
+            `💰 *Price per Night:* ₦${room?.price.toLocaleString() ?? 'N/A'}`,
+            ``,
+            `📅 *Check-in:* ${formatDate(formData.checkIn)}`,
+            `📅 *Check-out:* ${formatDate(formData.checkOut)}`,
+            `🌙 *Duration:* ${days} night${days !== 1 ? 's' : ''}`,
+            `💵 *Total Price:* ₦${totalPrice.toLocaleString()}`,
+            ``,
+            `👤 *Guest Name:* ${formData.fullName}`,
+            `📧 *Email:* ${formData.email}`,
+            `📞 *Phone:* ${formData.phone || 'Not provided'}`,
+            formData.notes ? `📝 *Special Requests:* ${formData.notes}` : '',
+        ].filter(Boolean).join('\n');
+
+        const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+        window.open(url, '_blank', 'noopener,noreferrer');
+        onClose();
     };
 
     if (!isOpen) return null;
@@ -114,7 +103,7 @@ const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose, room }) =>
                     </div>
 
                     {/* Body */}
-                    <form onSubmit={triggerPayment} className="modal-body">
+                    <form onSubmit={sendToWhatsApp} className="modal-body">
                         <div className="form-grid">
                             <div className="form-group">
                                 <label>Check-in Date</label>
@@ -181,10 +170,34 @@ const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose, room }) =>
                             </div>
                         </div>
 
+                        <div className="form-group">
+                            <label>Phone Number</label>
+                            <input
+                                type="tel"
+                                name="phone"
+                                required
+                                placeholder="+234 800 000 0000"
+                                onChange={handleInputChange}
+                                className="form-control"
+                            />
+                        </div>
+
+                        <div className="form-group">
+                            <label>Special Requests <span style={{ opacity: 0.6, fontWeight: 400 }}>(optional)</span></label>
+                            <textarea
+                                name="notes"
+                                rows={3}
+                                placeholder="Any special requests or requirements..."
+                                onChange={handleInputChange}
+                                className="form-control"
+                                style={{ resize: 'vertical' }}
+                            />
+                        </div>
+
                         {/* Summary */}
                         {days > 0 && (
                             <div className="modal-summary">
-                                <span>Total for {days} nights:</span>
+                                <span>Total for {days} night{days !== 1 ? 's' : ''}:</span>
                                 <span>₦{totalPrice.toLocaleString()}</span>
                             </div>
                         )}
@@ -192,8 +205,10 @@ const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose, room }) =>
                         <button
                             type="submit"
                             className="btn-confirm"
+                            style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px' }}
                         >
-                            Confirm & Pay
+                            <FaWhatsapp size={20} />
+                            Send Booking via WhatsApp
                         </button>
                     </form>
                 </motion.div>
