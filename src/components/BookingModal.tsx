@@ -22,6 +22,7 @@ const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose, room }) =>
         fullName: '',
         email: '',
         phone: '',
+        location: '',
         notes: ''
     });
     const [totalPrice, setTotalPrice] = useState(0);
@@ -54,20 +55,21 @@ const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose, room }) =>
         e.preventDefault();
 
         const message = [
-            `🏨 *New Booking Request – Eloheems Suites Kwali*`,
+            `*New Booking Request – Eloheems Suites Kwali*`,
             ``,
-            `📋 *Room:* ${room?.name ?? 'N/A'}`,
-            `💰 *Price per Night:* ₦${room?.price.toLocaleString() ?? 'N/A'}`,
+            ` *Room:* ${room?.name ?? 'N/A'}`,
+            ` *Price per Night:* ₦${room?.price.toLocaleString() ?? 'N/A'}`,
             ``,
-            `📅 *Check-in:* ${formatDate(formData.checkIn)}`,
-            `📅 *Check-out:* ${formatDate(formData.checkOut)}`,
-            `🌙 *Duration:* ${days} night${days !== 1 ? 's' : ''}`,
-            `💵 *Total Price:* ₦${totalPrice.toLocaleString()}`,
+            ` *Check-in:* ${formatDate(formData.checkIn)}`,
+            ` *Check-out:* ${formatDate(formData.checkOut)}`,
+            ` *Duration:* ${days} night${days !== 1 ? 's' : ''}`,
+            ` *Total Price:* ₦${totalPrice.toLocaleString()}`,
             ``,
-            `👤 *Guest Name:* ${formData.fullName}`,
-            `📧 *Email:* ${formData.email}`,
-            `📞 *Phone:* ${formData.phone || 'Not provided'}`,
-            formData.notes ? `📝 *Special Requests:* ${formData.notes}` : '',
+            ` *Guest Name:* ${formData.fullName}`,
+            ` *Email:* ${formData.email}`,
+            ` *Phone:* ${formData.phone || 'Not provided'}`,
+            ` *Location / Coming From:* ${formData.location || 'Not provided'}`,
+            formData.notes ? ` *Special Requests:* ${formData.notes}` : '',
         ].filter(Boolean).join('\n');
 
         const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
@@ -177,6 +179,18 @@ const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose, room }) =>
                                 name="phone"
                                 required
                                 placeholder="+234 800 000 0000"
+                                onChange={handleInputChange}
+                                className="form-control"
+                            />
+                        </div>
+
+                        <div className="form-group">
+                            <label>Location <span style={{ opacity: 0.6, fontWeight: 400 }}>(Where are you coming from?)</span></label>
+                            <input
+                                type="text"
+                                name="location"
+                                required
+                                placeholder="e.g. Lagos, Abuja, Port Harcourt..."
                                 onChange={handleInputChange}
                                 className="form-control"
                             />
